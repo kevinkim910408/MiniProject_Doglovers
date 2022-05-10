@@ -118,5 +118,46 @@ def check_dup():
     return jsonify({'result': 'success', 'exists': exists}) # 그 결과값을 다시 client 로 보내준다.
 
 
+#게시물 받아올 때 GET
+@app.route('/upload', methods=['GET'])
+def show_diary():
+    posts = list(db.upload.find({}, {'_id': False}))
+    return jsonify({'all_post': posts})
+
+#게시물 업로드 할때 POST
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    #파일 이름을 지정하기 위한 작업
+    time_receive = request.form['time_give']
+    comment_receive = request.form['comment_give']
+    file = request.files["file_give"]
+    extension = file.filename.split('.')[-1]
+    today = datetime.now()
+    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+    filename= f'file-{mytime}'
+    save_to = f'static/{filename}.jpg'
+    file.save(save_to)
+
+    #자유이용권 발급
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+    user_info = db.Doglovers.find_one({"id": payload["id"]})
+
+    doc={
+        'profile' : user_info['file'],
+        'username': user_info['id'],
+        'userdog':user_info['dog_breed'],
+        'age' : user_info['age'],
+        'time':time_receive,
+        'comment':comment_receive,
+        'file':f'{filename}.{extension}',
+    }
+    db.upload.insert_one(doc)
+
+    return jsonify({'msg': '저장 완료!'})
+
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
