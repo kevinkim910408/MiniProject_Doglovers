@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2f02267-0cd4-4e85-a179-de190feee249" name="Changes" comment="Changes" />
+    <list default="true" id="e2f02267-0cd4-4e85-a179-de190feee249" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,7 +51,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../로그인,회원가입 만들어보기" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -55,7 +61,7 @@
     <configuration name="checkPost.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/01-miniProject_/templates/checkPost.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="profile.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/01-miniProject_/templates/profile.html" useBuiltInWebServerPort="true">
+    <configuration name="signup.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/01-miniProject_/templates/signup.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -97,6 +103,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Flask 서버.Flask (app.py)" />
         <item itemvalue="Python.app" />
       </list>
     </recent_temporary>
@@ -119,8 +126,9 @@
       <workItem from="1652143459899" duration="737000" />
       <workItem from="1652144212070" duration="752000" />
       <workItem from="1652147123467" duration="206000" />
-      <workItem from="1652172813622" duration="892000" />
-      <workItem from="1652174319365" duration="5720000" />
+      <workItem from="1652154310094" duration="627000" />
+      <workItem from="1652154949923" duration="863000" />
+      <workItem from="1652156123673" duration="19048000" />
     </task>
     <servers />
   </component>
@@ -140,8 +148,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/miniproject2$Flask__app_py_.coverage" NAME="Flask (app.py) 커버리지 결과" MODIFIED="1652148732008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/MiniProject_Doglovers$app.coverage" NAME="app 커버리지 결과" MODIFIED="1652143488157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/01_miniProject_$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1652180745128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/miniproject2$miniproject2.coverage" NAME="miniproject2 커버리지 결과" MODIFIED="1652145068162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/01_miniProject_$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1652180745128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MiniProject_Doglovers$app.coverage" NAME="app 커버리지 결과" MODIFIED="1652143488157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
