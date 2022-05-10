@@ -30,7 +30,15 @@ db = client.dbsparta
 # 기본 메인 페이지 - 로그인페이지
 @app.route('/')
 def home():
-    return render_template('signup.html')
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        return render_template('index.html', user_info=user_info)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("signup", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("singup", msg="로그인 정보가 존재하지 않습니다."))
 
 # 메인페이지 - 메인페이지
 @app.route('/index')
@@ -44,11 +52,19 @@ def sign_in():
     password_receive = request.form['password_give']
 
     pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
-    result = db.users.find_one({'username': username_receive, 'password':pw_hash})
+    result = db.Doglovers.find_one({'username': username_receive, 'password':pw_hash})
 
     if result is not None:
-        exists = bool(db.Doglovers.find_one({"id": username_receive},{"pw": password_receive})) # true or false값을 뱉는다.
-        return jsonify({'result': 'success', 'exists': exists}) # 그 결과값을 다시 client 로 보내준다.
+        payload = {
+            'id': username_receive,
+            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+        }
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
+
+        return jsonify({'result': 'success', 'token': token})
+        # 찾지 못하면
+    else:
+        return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 # 회원가입 포스트
 @app.route('/signup/save', methods=['POST'])
