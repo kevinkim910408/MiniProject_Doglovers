@@ -42,8 +42,10 @@ def sign_in():
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
 
-    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    result = db.users.find_one({'username': username_receive, 'password':pw_hash})
 
+    if result is not
     exists = bool(db.Doglovers.find_one({"id": username_receive},{"pw": password_receive})) # true or false값을 뱉는다.
     return jsonify({'result': 'success', 'exists': exists}) # 그 결과값을 다시 client 로 보내준다.
 
