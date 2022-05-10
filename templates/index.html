@@ -100,7 +100,7 @@
 
         }
        function uploading() {
-            let comment = $("#content").val()
+            let comment = $("#comment").val()
 
             let file = $('#file')[0].files[0]
             let form_data = new FormData()
@@ -232,7 +232,7 @@
                                     </a>
                                     <div class="content" style="float: left;">
                                         <p style="line-height: 2;">
-                                            <strong>홍길동</strong>
+                                            <strong>{{user_info.id}}</strong>
                                         </p>
                                         <p style="line-height: 0;">
                                             <small>견종(나이)</small>
@@ -240,7 +240,10 @@
                                     </div>
                                 </div>
                                 <div class="comment" style="border-top: 1px solid black; border-bottom: 1px solid black;height: 400px;">
-                                    글쓰기
+
+                                    <textarea class="form-control" id="comment"
+                                                  rows="3" placeholder="강아지에 대해 설명해주세요!" style="width :700px; height:700px;"></textarea>
+
                                 </div>
                                 <button class="button is-dark">게시</button>
                             </div>
