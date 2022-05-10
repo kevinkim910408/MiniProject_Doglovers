@@ -51,7 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../한번더 복습" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -268,6 +268,7 @@
       <workItem from="1652143116819" duration="332000" />
       <workItem from="1652143459899" duration="737000" />
       <workItem from="1652144212070" duration="752000" />
+      <workItem from="1652147123467" duration="206000" />
     </task>
     <servers />
   </component>
