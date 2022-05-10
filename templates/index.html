@@ -89,6 +89,20 @@
 
 
     </style>
+    <script>
+        function sign_out() {
+
+            $.removeCookie('mytoken', {path: '/'});
+
+            alert('로그아웃!')
+
+            window.location.href = "/login"
+
+        }
+        function to_upload(){
+
+        }
+    </script>
 </head>
 <body>
 <!-- 네비게이션 바 작성부분 bulma 활용했음-->
@@ -102,7 +116,7 @@
            onclick='$("#modal-post").addClass("is-active")'>
             글쓰기
         </a>
-        <a style="float: right;" class="button is-light" role="button" href="/login">
+        <a style="float: right;" class="button is-light" role="button"  onCLick = sign_out() ;>
             로그아웃
         </a>
         <a class="image is-64x64" href="/profile" style="padding : 10px;">
