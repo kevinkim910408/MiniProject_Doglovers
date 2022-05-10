@@ -1,6 +1,7 @@
 # flask 패키지
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
-
+import certifi
+ca = certifi.where()
 app = Flask(__name__)
 
 from datetime import datetime
@@ -22,7 +23,7 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 SECRET_KEY = 'SPARTA'
 
 # 몽고DB 연결
-client = MongoClient('mongodb+srv://test:sparta@cluster0.m7jzf.mongodb.net/Cluster0?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://test:sparta@cluster0.m7jzf.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.dbsparta
 
 
@@ -45,9 +46,9 @@ def sign_in():
     pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     result = db.users.find_one({'username': username_receive, 'password':pw_hash})
 
-    if result is not
-    exists = bool(db.Doglovers.find_one({"id": username_receive},{"pw": password_receive})) # true or false값을 뱉는다.
-    return jsonify({'result': 'success', 'exists': exists}) # 그 결과값을 다시 client 로 보내준다.
+    if result is not None:
+        exists = bool(db.Doglovers.find_one({"id": username_receive},{"pw": password_receive})) # true or false값을 뱉는다.
+        return jsonify({'result': 'success', 'exists': exists}) # 그 결과값을 다시 client 로 보내준다.
 
 # 회원가입 포스트
 @app.route('/signup/save', methods=['POST'])
