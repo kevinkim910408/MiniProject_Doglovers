@@ -2,9 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <title>강아지 모여모여 화원가입</title>
+    <style>
+        .mytitlesignup {
+            box-shadow: 0px 0px 3px 0px gray;
+
+            width: 95%;
+            max-width: 500px;
+            height: 500px;
+            margin: 100px auto auto auto;
+            padding: 100px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .dww {
+            width: 400px;
+        }
+        .Personalpk{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+         }
+        .Personal {
+            margin: 10px;
+        }
+        .jpg {
+            width: 400px;
+        }
+        .dwwid {
+            margin: 10px;
+        }
+        .dwwpw {
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
+    <div class="mytitlesignup">
+            <h1>회원가입</h1>
+                <div class="dww">
+                    <div class="dwwid">
+                        <input id="name" class="form-control" type="text" placeholder="아이디 입력해주세요">
+                    </div>
+                    <div class="dwwpw">
+                        <input id="name" class="form-control" type="text" placeholder="비밀번호를 입력해주세요">
+                        <input id="name" class="form-control" type="text" placeholder="비밀번호를 다시 입력해주세요">
+                    </div>
+                </div>
+                <div class="Personalpk">
+                    <div class="Personal">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="견종">
+                    </div>
+                    <div class="Personal">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="나이">
+                    </div>
+                    <div class="Personal">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="이름">
+                    </div>
+                </div>
 
+                <div class="jpg">
+                    <div class="input-group mb-3">
+                      <input type="file" class="form-control" id="inputGroupFile02">
+                      <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                    </div>
+                </div>
+            <div class="mytitlebtn">
+                <button> 회원가입 </button>
+            </div>
+        </div>
 </body>
 </html>

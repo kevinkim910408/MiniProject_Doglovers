@@ -1,3 +1,101 @@
-body{
-    background-color: tomato;
+/*Common Setting*/
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*Background Setting*/
+.checkPost-wrap {
+    /*checkPost-Container를 화면 중앙으로 보내기위한 flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100vh;
+    background-color: #ded1c1;
+}
+
+/*전체적인 게시물을 관리할 태그*/
+.checkPost-Container {
+    width: 90%;
+    max-width: 1500px;
+    height: 1000px;
+    background-color: darkslategray;
+
+    border-radius: 10%;
+    /*아래 컨테이너 left, right를 가로줄로 세우기 위한 flex*/
+    display: flex;
+    flex-direction: row;
+}
+
+/* 게시물 확인 페이지에서 왼쪽에 이미지를 보여줄 태그*/
+.checkPost-Container .checkPost-Container-left {
+    /*게시물 사진이 들어간 공간 확보*/
+    width: 60%;
+    height: 100%;
+}
+
+/*게시물 확인 페이지에서 오른쪽에 게시물내용, 댓글들을 보여줄 태그*/
+.checkPost-Container .checkPost-Container-right {
+    width: 40%;
+    height: 100%;
+    background-color: #fff;
+
+    border-radius: 0px 10px 10px 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkPost-UserProfile,
+.checkPost-UserPost,
+.checkPost-Container-Comments
+{
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.checkPost-UserProfile{
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    padding-top: 50px;
+}
+
+.checkPost-UserPost {
+    height: 300px;
+}
+
+.checkPost-Container-Comments {
+    height: 400px;
+}
+
+.userProfile-Container{
+    text-align: center;
+    font-size: 20px;
+}
+
+.userProfile-Container .userProfile-name{
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.userProfile-Container .userProfile-breed{
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+}
+
+.checkPost-UserPost,
+.checkPost-Container-Comments{
+    padding: 20px;
+}
+
+hr{
+    width: 90%;
 }
