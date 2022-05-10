@@ -12,6 +12,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
+
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <title>강아지 모여모여 화원가입</title>
     <style>
@@ -19,7 +20,7 @@
             box-shadow: 0px 0px 3px 0px gray;
 
             width: 95%;
-            max-width: 500px;
+            max-width: 700px;
             height: 500px;
             margin: 100px auto auto auto;
             padding: 100px;
@@ -29,62 +30,160 @@
             align-items: center;
             justify-content: center;
         }
+
         .dww {
             width: 400px;
         }
-        .Personalpk{
+
+        .Personalpk {
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
-         }
+        }
+
         .Personal {
             margin: 10px;
         }
+
         .jpg {
             width: 400px;
         }
+
         .dwwid {
-            margin: 10px;
+
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
+
         .dwwpw {
             margin: 10px;
         }
     </style>
+
+    <script>
+        function check_dup() {
+            let id = $("#id").val();
+            if (id === "") {
+                alert('아이디를 입력해주세요')
+                $("#id").focus()
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/signup/check_dup",
+                data: {
+                    'id_give': id
+                },
+                success: function (response) {
+                    if (response["exists"]) {
+                        alert('이미 있는 아이디입니다!')
+                        $("#id").focus()
+                    } else {
+                        alert('사용가능하다!')
+                    }
+                }
+            });
+        }
+
+        function is_id(asValue) {
+            var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
+            return regExp.test(asValue);
+        }
+
+        function is_pw(asValue) {
+            var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+            return regExp.test(asValue);
+        }
+
+        function posting() {
+            let id = $("#id").val();
+            if (id === "") {
+                alert('아이디를 입력해주세요')
+            }
+            let pw = $('#pw').val();
+            let pw2 = $('#pw2').val();
+            if (pw === "") {
+                alert('비밀번호를 입력해주세요')
+            } else if (pw != pw2){
+                alert('비밀번호가 일치 하지않습니다')
+            } else {
+                alert('비밀번호가 일치합니다')
+            }
+            let dog_breed = $('#dog_breed').val();
+            let name = $('#name').val();
+            let age = $('#age').val();
+
+            $("#help-id").addClass("is-loading")
+
+            // file을 가져와서 저장 // $('#file')[0] - html tag들을 가져옴, files[0] - 파일갯수를 가져옴(제일첫번째)
+            let file = $('#file')[0].files[0]
+            let form_data = new FormData()
+
+            // file이기 때문에 form_data를 사용해서 보내야한다.
+            form_data.append("file_give", file)
+            form_data.append("id_give", id)
+            form_data.append("pw_give", pw)
+            form_data.append("pw2_give", pw2)
+            form_data.append("dog_breed_give", dog_breed)
+            form_data.append("age_give", age)
+            form_data.append("name_give", name)
+
+            $.ajax({
+                type: "POST",
+                url: "/signup/save",
+                data: form_data,
+                // 아래 새줄은 default로 false를 준다고 생각하기 file 업로드때는
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert('회원가입을 축하드립니다!')
+                    window.location.replace('/login')
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-    <div class="mytitlesignup">
-            <h1>회원가입</h1>
-                <div class="dww">
-                    <div class="dwwid">
-                        <input id="name" class="form-control" type="text" placeholder="아이디 입력해주세요">
-                    </div>
-                    <div class="dwwpw">
-                        <input id="name" class="form-control" type="text" placeholder="비밀번호를 입력해주세요">
-                        <input id="name" class="form-control" type="text" placeholder="비밀번호를 다시 입력해주세요">
-                    </div>
-                </div>
-                <div class="Personalpk">
-                    <div class="Personal">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="견종">
-                    </div>
-                    <div class="Personal">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="나이">
-                    </div>
-                    <div class="Personal">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="이름">
-                    </div>
-                </div>
-
-                <div class="jpg">
-                    <div class="input-group mb-3">
-                      <input type="file" class="form-control" id="inputGroupFile02">
-                      <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                    </div>
-                </div>
-            <div class="mytitlebtn">
-                <button> 회원가입 </button>
-            </div>
+<div class="mytitlesignup">
+    <h1>회원가입</h1>
+    <div class="dww">
+        <div class="dwwid">
+            <input id="id" type="text" class="form-control" placeholder="아이디" aria-label="Recipient's username"
+                   aria-describedby="button-addon2">
+            <button onclick="check_dup()" class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인
+            </button>
         </div>
+        <div class="dwwpw">
+            <input id="pw" class="form-control" type="text" placeholder="비밀번호">
+            <input id="pw2" class="form-control" type="text" placeholder="비밀번호 재입력">
+        </div>
+    </div>
+    <div class="Personalpk">
+        <div class="Personal">
+            <input type="email" class="form-control" id="dog_breed" placeholder="견종">
+        </div>
+        <div class="Personal">
+            <input type="email" class="form-control" id="age" placeholder="나이">
+        </div>
+        <div class="Personal">
+            <input type="email" class="form-control" id="name" placeholder="이름">
+        </div>
+    </div>
+
+    <div class="jpg">
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" id="file">
+            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+        </div>
+    </div>
+    <div class="mytitlebtn">
+        <button onclick="posting()"> 회원가입</button>
+        <button onclick="window.location.href = '/login'"> 취소</button>
+    </div>
+</div>
 </body>
 </html>
