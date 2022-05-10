@@ -16,6 +16,7 @@ db = client.dbsparta
 def home():
     return render_template('index.html')
 
+# 로그인 페이지 - login.html
 @app.route('/login')
 def login():
     return render_template('login.html')
