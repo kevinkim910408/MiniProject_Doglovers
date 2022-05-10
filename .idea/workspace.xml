@@ -57,7 +57,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Flask server.Flask (app.py)">
+  <component name="RunManager" selected="Flask 서버.Flask (app.py)">
     <configuration name="checkPost.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/01-miniProject_/templates/checkPost.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -103,8 +103,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Flask server.Flask (app.py)" />
-        <item itemvalue="JavaScript Debug.signup.html" />
+        <item itemvalue="Flask 서버.Flask (app.py)" />
         <item itemvalue="Python.app" />
       </list>
     </recent_temporary>
