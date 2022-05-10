@@ -33,17 +33,19 @@ def home():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.users.find_one({"username": payload["id"]})
+        user_info = db.Doglovers.find_one({"id": payload["id"]})
         return render_template('index.html', user_info=user_info)
     except jwt.ExpiredSignatureError:
-        return redirect(url_for("signup", msg="로그인 시간이 만료되었습니다."))
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("singup", msg="로그인 정보가 존재하지 않습니다."))
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
-# 메인페이지 - 메인페이지
-@app.route('/index')
-def index():
-    return render_template('index.html')
+
+@app.route('/login')
+def login():
+    msg = request.args.get("msg")
+    return render_template('signup.html', msg=msg)
+
 
 #로그인 포스트
 @app.route('/sign_in', methods=['POST'])
@@ -52,15 +54,15 @@ def sign_in():
     password_receive = request.form['password_give']
 
     pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
-    result = db.Doglovers.find_one({'username': username_receive, 'password':pw_hash})
+
+    result = db.Doglovers.find_one({'id': username_receive, 'pw': pw_hash})
 
     if result is not None:
         payload = {
             'id': username_receive,
             'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
-
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
         return jsonify({'result': 'success', 'token': token})
         # 찾지 못하면
     else:
@@ -97,7 +99,7 @@ def signup_post():
 
     doc = {
         'id': id_receive,
-        'pw': pw_receive,
+        'pw': pw_hash,
         'dog_breed': dog_breed_receive,
         'name': name_receive,
         'age': age_receive,
