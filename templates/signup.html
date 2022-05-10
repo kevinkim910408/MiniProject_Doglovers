@@ -210,7 +210,7 @@
                     success: function (response) {
                         if (response['result'] == 'success') {
                             $.cookie('mytoken', response['token'], {path: '/'});
-                            window.location.replace("/index")
+                            window.location.replace("/")
                         } else {
                             alert(response['msg'])
                         }
