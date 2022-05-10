@@ -31,6 +31,23 @@ db = client.dbsparta
 def home():
     return render_template('signup.html')
 
+# 메인페이지 - 메인페이지
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+#로그인 포스트
+@app.route('/sign_in', methods=['POST'])
+def sign_in():
+    username_receive = request.form['username_give']
+    password_receive = request.form['password_give']
+
+    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    result = db.users.find_one({'username': username_receive, 'password':pw_hash})
+
+    if result is not
+    exists = bool(db.Doglovers.find_one({"id": username_receive},{"pw": password_receive})) # true or false값을 뱉는다.
+    return jsonify({'result': 'success', 'exists': exists}) # 그 결과값을 다시 client 로 보내준다.
 
 # 회원가입 포스트
 @app.route('/signup/save', methods=['POST'])
@@ -70,7 +87,6 @@ def signup_post():
         'file': f'{filename}.{extension}',
         'time': f'{uploaddate}',
     }
-
     db.Doglovers.insert_one(doc)
     return jsonify({'msg': 'Saved'})
 
