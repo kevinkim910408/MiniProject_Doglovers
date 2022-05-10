@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e2f02267-0cd4-4e85-a179-de190feee249" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stastic/checkPost.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/checkPost.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stastic/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stastic/profile_change.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/profile_change.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/checkPost.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/checkPost.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +57,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Flask server.Flask (app.py)">
+  <component name="RunManager" selected="JavaScript Debug.profile.html">
     <configuration name="checkPost.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/01-miniProject_/templates/checkPost.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="profile.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/01-miniProject_/templates/profile.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -87,7 +93,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -97,6 +103,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.profile.html" />
         <item itemvalue="Python.app" />
       </list>
     </recent_temporary>
@@ -119,7 +126,7 @@
       <workItem from="1652143459899" duration="737000" />
       <workItem from="1652144212070" duration="752000" />
       <workItem from="1652147123467" duration="206000" />
-      <workItem from="1652172813622" duration="627000" />
+      <workItem from="1652172813622" duration="892000" />
     </task>
     <servers />
   </component>
