@@ -79,8 +79,8 @@ def signup_post():
 @app.route('/sign_up/check_dup', methods=['POST'])
 def check_dup():
     username_receive = request.form['username_give']
-    exists = bool(db.Doglovers.find_one({"id": username_receive}))
-    return jsonify({'result': 'success', 'exists': exists})
+    exists = bool(db.Doglovers.find_one({"id": username_receive})) # true or false값을 뱉는다.
+    return jsonify({'result': 'success', 'exists': exists}) # 그 결과값을 다시 client 로 보내준다.
 
 
 if __name__ == '__main__':

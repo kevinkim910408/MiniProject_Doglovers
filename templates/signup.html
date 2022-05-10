@@ -2,9 +2,7 @@
 <html lang="en">
     <head>
         <!-- Webpage Title -->
-        <title>강아지 모여모여 회원가입</title>
-        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+        <title>강아지 모여모여</title>
 
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -21,7 +19,7 @@
         <!-- 파일업로드 라이브러리 -->
         <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 
-        <!-- JS -->
+        <!-- 제이쿼리 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
@@ -51,10 +49,13 @@
             }
         </style>
         <script>
-            $(document).ready(function () { // 웹페이지 로딩될때 시작할 코드
-                bsCustomFileInput.init()  // 파일 업로드 코드
+            // 웹페이지 로딩될때 시작할 코드
+            $(document).ready(function () {
+                bsCustomFileInput.init()  // 파일 업로드할때 파일 이름 보여주는 기능
             })
-            function toggle_sign_up() {
+
+            // .toggleClass() - id에 따른 tag들을 보여주고 .show(), 숨겨준다 .hidden()
+                function toggle_sign_up() {
                 $("#sign-up-box").toggleClass("is-hidden")
                 $("#div-sign-in-or-up").toggleClass("is-hidden")
                 $("#btn-check-dup").toggleClass("is-hidden")
@@ -64,20 +65,27 @@
                 $("#title_id").toggleClass("is-hidden")
                 $("#title_id2").toggleClass("is-hidden")
             }
+
+            // 아이디 정규 표현식
             function is_nickname(asValue) {
+                //[-a-zA-Z0-9_.]{2,10} - 영문, 숫자, 아이디 길이는 2~10까지
                 var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
                 return regExp.test(asValue);
             }
+
+            // 비밀번호 정규 표현식
             function is_password(asValue) {
+                // 비번에 !@#$%^&* 이런 특수문자도 추가 가능
                 var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
                 return regExp.test(asValue);
             }
+
+            // 중복체크
             function check_dup() {
                 let username = $("#input-username").val()
-                console.log(username)
                 if (username == "") {
                     $("#help-id").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
-                    $("#input-username").focus()
+                    $("#input-username").focus() // .focus() - input창에 커서를 넣어주는거
                     return;
                 }
                 if (!is_nickname(username)) {
@@ -105,8 +113,8 @@
 
                     }
                 });
-
             }
+
             function sign_up() {
                 let username = $("#input-username").val()
                 let password = $("#input-password").val()
@@ -172,6 +180,7 @@
                     }
                 });
             }
+
             function sign_in() {
                 let username = $("#input-username").val()
                 let password = $("#input-password").val()
