@@ -135,8 +135,8 @@
             });
         }
 
-        function movetoCheckPost(){
-            window.location.href = "/checkPost/{{ user_info.id }}"
+        function movetoCheckPost(username){
+            window.location.href = `/checkPost/${username}`
 
         }
 
@@ -194,7 +194,11 @@
                                                                aria-hidden="true"></i></span>&nbsp;<span
                         class="like-num">${count_heart}</span>
                 </a>
-                <button class="button is-light" onclick="movetoCheckPost()">댓글 보기</button>
+
+                <a style="float: right;" class="button is-primary" role="button" id="to-modal"
+                   onclick='$("#modal-post").addClass("is-active")'>
+                    게시물확인
+                </a>
             </div>
 
         </nav>
@@ -257,6 +261,7 @@
            onclick='$("#modal-post").addClass("is-active")'>
             글쓰기
         </a>
+
         <a style="float: right;" class="button is-light" role="button"  onCLick = sign_out() ;>
             로그아웃
         </a>
