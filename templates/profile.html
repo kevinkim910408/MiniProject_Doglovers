@@ -1,134 +1,188 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Google Material - Icon -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!--폰트 링크-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Single+Day&display=swap" rel="stylesheet">
+
+    <!-- Google Material - Icon -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <!---->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+            crossorigin="anonymous"></script>
 
 
-        <!-- LINK CSS -->
-        <link rel="stylesheet" href="../static/profile.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>강아지 모여모여</title>
 
-        <!-- Bulma CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-
-        <!-- Font Awesome CSS -->
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <!-- LINK Main CSS
-        <link rel="stylesheet" href="../static/main.css">-->
-
-        <!-- Google Material - Icon -->
-        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-
-        <!--폰트 링크-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jua&family=Single+Day&display=swap" rel="stylesheet">
-
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-                integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-                integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-                crossorigin="anonymous"></script>
-
-
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>강아지 모여모여</title>
-    </head>
-
-    <script>
-        //프로필 페이지에서 프로필 수정을 눌렀을때 프로필 수정 페이지로 넘어가는 기능  a링크로 연결 (완료)
-
-
-        //프로필 페이지에서 로그아웃 눌렀을때 로그아웃 창이 나타난 후 로그인 페이지로 넘어가는 기능  승준님이 만들어주신거 활용(완료)
-
-        function sign_out() {
-
-            $.removeCookie('mytoken', {path: '/'});
-
-            alert('로그아웃!')
-
-            window.location.href = "/login"
+    <style>
+        * {
+            font-family: 'Jua', sans-serif;
+            box-sizing:border-box;
+            margin:0;
         }
 
-        // 웹페이지 로딩될때 시작할 코드
-        $(document).ready(function () {
-            bsCustomFileInput.init()  // 파일 업로드할때 파일 이름 보여주는 기능
+        body {
+            background-color: RGBA(188, 94, 0, 0.7);
+            min-height: 100vh;
+            padding-top: 3.25rem;
+        }
+
+        header {
+            height: 75px;
+            padding: 1rem;
+            color: white;
+            background: teal;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            /* width: 100% */
+            left: 0;
+            right: 0;
+            margin-bottom: 20px;
+            padding-left: 100px;
+            padding-right: 100px;
+            background-color: white;
+            z-index: 5;
+        }
+
+        .header-button {
+            float: right;
+            padding: 20px;
+            margin: 20px 20px 0px 0px;
+            margin-right: 70px;
+        }
+
+        .container_A {
+            margin-top: 50px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .profile_content {
+            margin-left: 40px;
+        }
+
+        .profile_content ul li{
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+
+        .container_B {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            margin-top: 50px;
+        }
+
+        .container_B a{
+            margin-right: 50px;
+            font-size: 25px;
+        }
+
+        .container_C{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .cards-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 50px;
+            border-top: 2px solid #9aa0a6;
+            width: 500px;
+        }
+
+        .card {
+            margin-top: 30px;
+            margin-left: 30px;
+            border: 2px solid;
+            border-radius: 10px;
+            margin-right: 40px;
+        }
+
+    </style>
+</head>
+
+<script>
+    //프로필 페이지에서 프로필 수정을 눌렀을때 프로필 수정 페이지로 넘어가는 기능  a링크로 연결 (완료)
+    //프로필 페이지에서 로그아웃 눌렀을때 로그아웃 창이 나타난 후 로그인 페이지로 넘어가는 기능  승준님이 만들어주신거 활용(완료)
+    function sign_out() {
+        $.removeCookie('mytoken', {path: '/'});
+        alert('로그아웃!')
+        window.location.href = "/login"
+    }
+
+    //프로필 페이지 : image, ID, name, dog_breed, age, 회원가입 정보를 가져와야 함 (+프로필 수정 탭, 로그아웃 탭)
+    $(document).ready(function () {
+        show_profile();
+    });
+
+    function show_profile() {
+        $.ajax({
+            type: 'GET',
+            url: '/show_profile',
+            data: {},
+            success: function (response) {
+            }
         })
+    }
 
-        //프로필 페이지 : image, ID, name, dog_breed, age, 회원가입 정보를 가져와야 함 (+프로필 수정 탭, 로그아웃 탭)
-
-        $(document).ready(function () {
-            show_profile();
-        });
-
-        function show_profile() {
-            $.ajax({
-                type: 'GET',
-                url: '/show_profile',
-                data: {},
-                success: function (response) {
-                    let posts = response['all_post']
-                    for (let i = 0; i < posts.length; i++) {
-                        let username = posts[i]['username']
-                        let userdog = posts[i]['userdog']
-                        let age = posts[i]['age']
-                        let file = posts[i]['file']
-                        let profile = posts[i]['profile']
-
-                        let temp_html = ` <div class="profile_content">
-                                            <ul>
-                                                <li>${id}</li>
-                                                <li>반려동물 이름</li>
-                                                <li>반려동물 견종</li>
-                                                <li>반려동물 나이</li>
-                                            </ul>
-                                        </div>`
-                        $('#wrapwrap').append(temp_html)
-                    }
-                }
-            })
-        }
-
-
-        //프로필 수정 페이지 : image, ID, name, dog_breed, age 정보를 가져온 후 수정  / 입력할 수 있는 창을 띄워주고(dbprac 내용 활용)
-
-
-        //다른 사람 프로필 페이지: 프로필 페이지와 동일한 기능 + 4주차 강의 활용해서 내가 아닐 경우 프로필 수정, 로그아웃 탭 없어지게 기능 구현
-
-
-    </script>
-
-
-    <body>
+    //프로필 수정 페이지 : image, ID, name, dog_breed, age 정보를 가져온 후 수정  / 입력할 수 있는 창을 띄워주고(dbprac 내용 활용)
+    //다른 사람 프로필 페이지: 프로필 페이지와 동일한 기능 + 4주차 강의 활용해서 내가 아닐 경우 프로필 수정, 로그아웃 탭 없어지게 기능 구현
+</script>
+<body>
     <!-- 네비게이션 바 작성부분 bulma 활용했음-->
     <header class="header">
         <a class="navbar-item" href="/">
             <strong class="is-sparta" style="font-family: 'Stylish', sans-serif;font-size: larger;">강아지 모여모여</strong>
         </a>
         <nav class="nav_buttons">
-            <a style="float: right;" class="button is-primary" role="button" id="to-modal" onclick='$("#modal-post").addClass("is-active")'> 글쓰기 </a>
-            <a style="float: right;" class="button is-light" role="button" onCLick=sign_out() ;> 로그아웃 </a>
-            <a class="image is-64x64" href="/profile" style="padding : 10px;"> <img class="is-rounded" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEHBhAIBw8OFRUODw8QEBMSEBAPEA4SFhMWFhYSFx8YHTQgGRoxHRMTITEhJSkuLi4uFx8zODMsNyktLisBCgoKDg0OGhAQGjYlHyU1Ky0tKy0wKy0tLi0tLS0rLS0tLS0tLS0tKy03NystLSsrNS0tLS03Kzc3LS0rLS0tN//AABEIAOEA4QMBIgACEQEDEQH/xAAaAAEAAgMBAAAAAAAAAAAAAAAABAUCAwYB/8QAMxABAAECAwUFBwQDAQAAAAAAAAECAwQRcQUhMTJBEhNRYXI0gZGhsdHhIkKSwSMzghT/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAwIBBAX/xAAcEQEBAQEBAQEBAQAAAAAAAAAAAQIRAzESQSH/2gAMAwEAAhEDEQA/AOsAe980AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHvHgscLs/d27/8fu5bx2S1At2qrk5W4mdISKdn3J6RGs/ZbUxFMZUxlo9Y/ak84qJ2fcjhETpLRcs1Wv8AZTMfRfExnGUn7L5xzotMVs+Ko7VjdPh0nTwVkx2Zyno3L1O5seAOuAAAAAAAAAAAAAAAAAAANlm33t2KI6yCds3DZR39f/Pl5rAiMoyjoJW9Xk5ABx0AAQto4bt0d7Rxjj5wmhLws7HOjdirXc36qI8d2ktKzzgAAAAAAAAAAAAAAAAACZsunPE5+FMz/X9oabsqcsRMeNM/WHNfHc/VqAkuAAAAAAq9rU5XqavGnL4T+UFYbWn/ACUx5T9fwr1c/ENfQB1wAAAAAAAAAAAAAAAAbsJc7rEU1T45TpO5pAjohFwGI7612auNO6fOPFKRv+PRL0AAAABoxl/uLOccZ3U/cLeK3H3O8xU5dP0/D85oz14tHnt6AAAAAAAAAAAAAAAAAAAAztXJtVxXRxhcYXFU4iMuE9Y+ykexOW+HLOu51x0IqLW0K7cZVZVa8fik07Tp/dTV7piWPzVZuJwgztOn9tNXvyhHu7Qrr3UZU6b5c/NLuLDEYmmxT+rj0jrKnvXZvXO3X+IjwYTPanOp4pM8T1roA6yAAAAAAAAAAAAAAAAAAAAAADKmmauWJnSM2cWK54UV/wAZBqG2cPXHGiv+MsJomnmiY1jIOMQAAAAAAAAAAAAAAAAAAABnatTdq7NuM/6WVjZ0U772+fDp+XLZHZm1W0W5uTlREzpCVb2dVVvrmI+crSmmKYypiI03PWLtSec/qJb2dRTzZz78o+TfRYoo5aafhvbBztakkAHHQAGFVmmvmppn3Q0V7Poq4RMaT90oOlkqsubNmN9uqJ13SiXbNVqcrkTH0XxMZxlLU1WLiOdFtf2fTXvt/pn5K69Yqs1ZXI0npLcsqdzY1AOuAAAAAAAAAADdhcPOIudmOEcZ8GleYSz3NiKevGdXNXjWc9rOzaizR2bcfedWYJLAAAAAAAAAAAADyuiK6ezXGcS9AU2Mwv8A56s6eWeHl5Iy/vW4u2poq6/LzUMx2ZynpuUzeo7zyvAGmQAAAAAAAHtPNGroXPU80aw6FjanmAMKAAAAAAAAAAAAAACixW7E1+qfqvVHi/aq/VLeGPT40gNpAAAAAAAAMqeaNYdA5+nmjWHQMbU8wBhQAAAAAAAAAAAAAAUeL9qr9UrxR4v2qv1S3hj0+NIDaQAAAAAAADKnmjWHQOfo541h0DG1PMAYUAAAAAAAAAAAAAAFHi/aq/VK8UeL9qr9Ut4Y9PjSA2kAAAAAAAAyo541h0AMbU8wBhQAAAAAAAAAAAAAAUeL9qr9Ug3hj0+NIDaQAAAD/9k="> </a>
+            <a style="float: right;" class="header-button button is-light" role="button" onCLick=sign_out() ;> 로그아웃 </a>
         </nav>
     </header>
-
-    <!-- 사람 프로필-->
     <div class="profile">
 
         <div class="container_A">
             <div class="profile_img">
-                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEHBhAIBw8OFRUODw8QEBMSEBAPEA4SFhMWFhYSFx8YHTQgGRoxHRMTITEhJSkuLi4uFx8zODMsNyktLisBCgoKDg0OGhAQGjYlHyU1Ky0tKy0wKy0tLi0tLS0rLS0tLS0tLS0tKy03NystLSsrNS0tLS03Kzc3LS0rLS0tN//AABEIAOEA4QMBIgACEQEDEQH/xAAaAAEAAgMBAAAAAAAAAAAAAAAABAUCAwYB/8QAMxABAAECAwUFBwQDAQAAAAAAAAECAwQRcQUhMTJBEhNRYXI0gZGhsdHhIkKSwSMzghT/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAwIBBAX/xAAcEQEBAQEBAQEBAQAAAAAAAAAAAQIRAzESQSH/2gAMAwEAAhEDEQA/AOsAe980AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHvHgscLs/d27/8fu5bx2S1At2qrk5W4mdISKdn3J6RGs/ZbUxFMZUxlo9Y/ak84qJ2fcjhETpLRcs1Wv8AZTMfRfExnGUn7L5xzotMVs+Ko7VjdPh0nTwVkx2Zyno3L1O5seAOuAAAAAAAAAAAAAAAAAAANlm33t2KI6yCds3DZR39f/Pl5rAiMoyjoJW9Xk5ABx0AAQto4bt0d7Rxjj5wmhLws7HOjdirXc36qI8d2ktKzzgAAAAAAAAAAAAAAAAACZsunPE5+FMz/X9oabsqcsRMeNM/WHNfHc/VqAkuAAAAAAq9rU5XqavGnL4T+UFYbWn/ACUx5T9fwr1c/ENfQB1wAAAAAAAAAAAAAAAAbsJc7rEU1T45TpO5pAjohFwGI7612auNO6fOPFKRv+PRL0AAAABoxl/uLOccZ3U/cLeK3H3O8xU5dP0/D85oz14tHnt6AAAAAAAAAAAAAAAAAAAAztXJtVxXRxhcYXFU4iMuE9Y+ykexOW+HLOu51x0IqLW0K7cZVZVa8fik07Tp/dTV7piWPzVZuJwgztOn9tNXvyhHu7Qrr3UZU6b5c/NLuLDEYmmxT+rj0jrKnvXZvXO3X+IjwYTPanOp4pM8T1roA6yAAAAAAAAAAAAAAAAAAAAAADKmmauWJnSM2cWK54UV/wAZBqG2cPXHGiv+MsJomnmiY1jIOMQAAAAAAAAAAAAAAAAAAABnatTdq7NuM/6WVjZ0U772+fDp+XLZHZm1W0W5uTlREzpCVb2dVVvrmI+crSmmKYypiI03PWLtSec/qJb2dRTzZz78o+TfRYoo5aafhvbBztakkAHHQAGFVmmvmppn3Q0V7Poq4RMaT90oOlkqsubNmN9uqJ13SiXbNVqcrkTH0XxMZxlLU1WLiOdFtf2fTXvt/pn5K69Yqs1ZXI0npLcsqdzY1AOuAAAAAAAAAADdhcPOIudmOEcZ8GleYSz3NiKevGdXNXjWc9rOzaizR2bcfedWYJLAAAAAAAAAAAADyuiK6ezXGcS9AU2Mwv8A56s6eWeHl5Iy/vW4u2poq6/LzUMx2ZynpuUzeo7zyvAGmQAAAAAAAHtPNGroXPU80aw6FjanmAMKAAAAAAAAAAAAAACixW7E1+qfqvVHi/aq/VLeGPT40gNpAAAAAAAAMqeaNYdA5+nmjWHQMbU8wBhQAAAAAAAAAAAAAAUeL9qr9UrxR4v2qv1S3hj0+NIDaQAAAAAAADKnmjWHQOfo541h0DG1PMAYUAAAAAAAAAAAAAAFHi/aq/VK8UeL9qr9Ut4Y9PjSA2kAAAAAAAAyo541h0AMbU8wBhQAAAAAAAAAAAAAAUeL9qr9Ug3hj0+NIDaQAAAD/9k="
-                     width="300" height="300" alt="..." class="rounded-circle">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEXk5ueutLersbTn6eqor7Lp6+y2u77h4+TIzM7N0dLR1NbU19mxt7q/xMbZ3N3c3+C6v8HCx8mJwGV6AAAFVUlEQVR4nO2d2XbjIAxAARmMd/v/f3YgSVs7kzY2CCMc3Zc50yffI7GDIgTDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMBcEQIt67NqmabtxEqAh9xdhAiBGO8vKoRy3f83S+b9fAYC6MapS8gknauxUviRAa/63+7E0jdC5vzEGEFZWv+k9JOVSF+sIYNWv4Vs5qkWUmau6kzv87o5NgWEEMG/yc03VF5equjvgd3MsLIywHBR0inPujz4ACLOzBa5RfV1KhwN1HyDoHacyFKEO0vNUYxGKdVgAC1I83MdsFOknKkRE0KPq3AZv0CZO0JFb4W/0EhlCF8SZcp5CG9UI71SWsGJMN7pSnHJ7/IqeUQylpDpFRclRj1qIKgKSoMvT3Cqv0QNSjjoMzSCihdDP3nLLvEDPeII0g1gjhtB1NvSCiNkKPTO9IOIKutVwbqEnoME2pDYmIqwpnsmt9MSEHEI3YHS5nTaARTdUA6klBuAnKbE0xVk2baG1iOoSGKqGUJpC/ObFCygN+kmaoZSEYog9oblTEdpYnFBn3d+GhEbEo4eF+1B0Nt0SjPc3w4FMV5OmK6W0DAbU5f0PPR3DNIOFVGQMdZ/GsKLT01zfMI0gG57IB2Tp9Q0vP1qkGvHpnCMC8n73F4RmbWlm3pLOzPv6q6dUK2BK50+X38VIM1woOkn6AbuJaXaECXU0n7Crf/2Tmeufrl3/hPQDTrkT3FSglaTi+rdNhB5wDemsnL7BvvVFLkmRb+7R2dBfgRlEUgunbz7gBi3eFVpKK8M10Fz9JjvexIaqINqLEpLdzB2UFxe0Vr7PIPSntF92+UOaaMXcCm+JfWFJ/xFp3NSmhIfAEKNYgqBTDN/RKEPw9iA/sOJAIYLBVSNkMVUjhD8zPdwY1VxWHR59dHZD+n3zS1ymHqrAQ38Y/B8Xxr1VlCpLdzXxF6CXPY6qGsqt2qbF8q7al1JDcSWiNmjR9L9Lqqq3ZVek84Ce7Muqgkr1y1hufm4AqLvFyEdhyFtpSGmWtr6I3gNnU09d29hbec/a/f9SeiuuKgagQW+5iKo386VnGzvMxvSPe6h9b+Zhse04uaZYrKn/8qmzg3mUnn0xEPoeR/Xz0tyaZe4PPoKXG5uhdwZ7pm3eVM62qwupLQxadNYFbk/l0u3gr/qhmahb6tvoflRuFU1n2QmykhrGQQbbrSxNUxOUdHOzQWGdrrnpagu0pqtaWDS9L0kzkgkkwDjvXeseoZKWxNYUiPZdQetg3No4e0lz/b5gd6Rj3mR1S/jAvd8DVKbL1ensLEiO4ThmcdTNOX43x/n8vRw9ps/PjeNybpcD4viufSRKndkcdXtegv5QnXawAWI+O4B3lGpPCaPucgTwTjWcEMaAivmIKJl64AguKI9G4t9Q0GNmP6+Y8jmUxrp8GIVKV11JZ22CK1SiVVXA2Xwq0lzaAKxS1hikUCQl6BQ7bEVigvjXp9CqreOB+0sY2EWCUcC80K8tmV50Dd5bb0hTMiGeHksR980WIlgl61LV10GgQilxSrKX+QLjHSbZRnjHIASRcAQlxvMTgkP9lujKCyPpHPVEPlXUub//PVXUHBztRWFKomqe6QIEo+p+p6rhhUzE/FQXIRgRRPRaF8kINUxVWhYd1QYqEtj+3UngmEh6yr0l9Icvc3/3fsJmp5CiQlkqgpYYBSVpaJrm/uojBA2JaepZJiLkET+0BSWpDHnFn6pybiICtocJ77C9IqR+XVEhDBkRi+poHMerLNLfoNlyfMzH+m3f0zhqCPbxVrAU6NTgZxiGYRiGYRiGYRiGYT6Uf/VaUTW8zb4SAAAAAElFTkSuQmCC"
+                     style="width:300px; height:300px; border-radius: 50%"  class="rounded-circle">
             </div>
-
-
             <div class="profile_content">
                 <ul>
                     <li>ID(닉네임)</li>
@@ -138,31 +192,25 @@
                 </ul>
             </div>
         </div>
+        <div class="container_B">
+            <a href="profile_change.html" class="profile_change">프로필 수정</a>
+            <a href="/" class="logout">로그아웃</a>
+        </div>
 
-        <!--프로필 수정 및 로그아웃-->
-        {% if status %}
-            <div class="container_B">
-            <div class="profile_bottom">
-                <a href="profile_change.html" class="profile_change">프로필 수정</a>
-                <a href="#" class="logout">로그아웃</a>
+        <!--게시글 모아보기-->
+        <div class="container_C">
+            <div class="cards-box">
+            <div class="card">
+                <img class="card-img-top" src="..." alt="Card image cap">
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="..." alt="Card image cap">
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="..." alt="Card image cap">
             </div>
         </div>
-        {% endif %}
-    </div>
-
-
-    <!--게시글 모아보기-->
-    <div class="cards-box">
-        <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
         </div>
     </div>
-
-    </body>
-    </html>
+</body>
+</html>
