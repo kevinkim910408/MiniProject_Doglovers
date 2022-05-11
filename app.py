@@ -1,6 +1,9 @@
 # flask 패키지
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 import certifi
+
+
+
 ca = certifi.where()
 app = Flask(__name__)
 
@@ -11,9 +14,9 @@ from pymongo import MongoClient
 import jwt
 import datetime
 import hashlib
-from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
+
 
 
 app = Flask(__name__)
@@ -23,7 +26,7 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 SECRET_KEY = 'SPARTA'
 
 # 몽고DB 연결
-client = MongoClient('mongodb+srv://test:sparta@cluster0.m7jzf.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
+client = MongoClient('mongodb+srv://test:sparta@cluster0.88k4h.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
 
@@ -250,6 +253,24 @@ def save_img():
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
 
+#댓글 달기 기능
+@app.route("/commentleave", methods=["POST"])
+def comment_posting():
+    commentleave_receive = request.form['commentleave_give']
+
+    doc ={
+        'commentleave': commentleave_receive
+    }
+    db.writecomment.insert_one(doc)
+
+    return jsonify({'msg': '댓글완료!'})
+
+#댓글 달기 기능
+@app.route("/commentleave", methods=["GET"])
+def comment_get():
+   writecomment_list = list(db.writecomment.find({}, {'_id': False}))
+
+   return jsonify({'writecomment': writecomment_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
