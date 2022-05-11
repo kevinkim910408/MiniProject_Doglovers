@@ -130,6 +130,10 @@ def upload_file():
     #give데이터 받아오기
     comment_receive = request.form['comment_give']
     file = request.files["file_give"]
+<<<<<<< HEAD
+    print(comment_receive, file)
+=======
+>>>>>>> 554f63d13f80ec14f1ada012e08b6df49d7c2202
     #파일 이름을 지정하기 위한 작업
     extension = file.filename.split('.')[-1]
     today = datetime.now()
@@ -150,7 +154,11 @@ def upload_file():
         'username': user_info['id'],
         'userdog':user_info['dog_breed'],
         'age' : user_info['age'],
+<<<<<<< HEAD
+        'time':mytime,
+=======
         'time':uploadtime,
+>>>>>>> 554f63d13f80ec14f1ada012e08b6df49d7c2202
         'comment':comment_receive,
         'file':f'{filename}.{extension}',
     }
