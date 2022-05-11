@@ -108,7 +108,7 @@
         // 아이디 정규 표현식
         function is_nickname(asValue) {
             //[-a-zA-Z0-9_.]{2,10} - 영문, 숫자, 아이디 길이는 2~10까지
-            var regExp = /^(?=.*[가-힣a-zA-Z])[가-힣a-zA-Z]{2,10}$/;
+            var regExp = /^[가-힣a-zA-Z0-9_.]{2,10}$/;
             return regExp.test(asValue);
         }
 
@@ -382,15 +382,15 @@
                                 <div class="Personalpk">
                                     <div class="Personal">
                                         <input type="text" class="form-control input" id="dog_breed" placeholder="견종"
-                                               maxlength="15">
+                                               maxlength="8">
                                     </div>
                                     <div class="Personal">
-                                        <input type="text" class="form-control input" id="age" placeholder="나이"
-                                               maxlength="4">
+                                        <input type="text" class="form-control input" id="age" placeholder="나이(숫자만입력!)"
+                                               maxlength="2">
                                     </div>
                                     <div class="Personal">
                                         <input type="text" class="form-control input" id="name" placeholder="이름"
-                                               maxlength="10">
+                                               maxlength="5">
                                     </div>
                                 </div>
                                 {#  회원가입창 - 파일 업로드  #}

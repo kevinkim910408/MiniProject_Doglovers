@@ -108,7 +108,12 @@
             text-align: center;
             border-bottom: 2px solid black;
         }
-        .profile_content ul li:nth-child(1){
+
+        .profile_content ul li:nth-child(1) {
+            border: none;
+            margin-bottom: 10px;
+        }
+        .profile_content ul li:nth-child(2){
              margin-bottom: 70px;
         }
 
@@ -159,10 +164,11 @@
             </div>
             <div class="profile_content">
                 <ul>
-                    <li>모여모여ID: {{user_info.id}}</li>
-                    <li>{{user_info.name}}</li>
+                    <li>모여모여ID:</li>
+                    <li>{{user_info.id}}</li>
+                    <li>제 이름은 '{{user_info.name}}' 입니다!</li>
                     <li>견종은 '{{user_info.dog_breed}}' 입니다</li>
-                    <li>올해로 {{user_info.age}}살 <입니다></입니다></li>
+                    <li>올해로 '{{user_info.age}}'살 입니다</li>
                 </ul>
             </div>
         </div>
