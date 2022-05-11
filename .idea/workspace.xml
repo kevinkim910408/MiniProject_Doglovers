@@ -51,7 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sparta/projects/mars" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sparta_plus/project04" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -136,7 +136,7 @@
       <workItem from="1652182181114" duration="1194000" />
       <workItem from="1652183434606" duration="2474000" />
       <workItem from="1652189656727" duration="2409000" />
-      <workItem from="1652222086880" duration="8105000" />
+      <workItem from="1652222086880" duration="10100000" />
     </task>
     <servers />
   </component>

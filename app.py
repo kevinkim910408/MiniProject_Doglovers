@@ -136,6 +136,7 @@ def upload_file():
     extension = file.filename.split('.')[-1]
     today = datetime.now()
     mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+    uploadtime=today.strftime('%m-%d %H:%M')
     filename= f'file-{mytime}'
     save_to = f'static/{filename}.jpg'
     file.save(save_to)
@@ -151,7 +152,7 @@ def upload_file():
         'username': user_info['id'],
         'userdog':user_info['dog_breed'],
         'age' : user_info['age'],
-        'time':time_receive,
+        'time':uploadtime,
         'comment':comment_receive,
         'file':f'{filename}.{extension}',
     }
