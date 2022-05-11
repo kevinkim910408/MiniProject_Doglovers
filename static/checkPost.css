@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-/*Background Setting*/
+/*Background Setting - 배경화면*/
 .checkPost-wrap {
     /*checkPost-Container를 화면 중앙으로 보내기위한 flex */
     display: flex;
@@ -20,7 +20,7 @@
 .checkPost-Container {
     width: 90%;
     max-width: 1500px;
-    height: 1000px;
+    height: 850px;
     background-color: darkslategray;
 
     border-radius: 10%;
