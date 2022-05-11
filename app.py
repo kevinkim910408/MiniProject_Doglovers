@@ -220,10 +220,8 @@ def user(username):
 
         user_info = db.Doglovers.find_one({"id": username}, {"_id": False})
         return render_template('profile.html', user_info=user_info, status=status)
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+    except(jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
-
-# 프로필 페이지 입니다.
 
 
 
