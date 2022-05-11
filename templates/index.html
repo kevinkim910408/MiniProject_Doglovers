@@ -268,6 +268,16 @@
             };
             reader.readAsDataURL(event.target.files[0]); }
 
+
+    function modal_event(){
+            $('#file').val('');
+            $('#comment').val('');
+
+            document.getElementById("sample").src="https://images.creativemarket.com/0.1.0/ps/8741478/910/607/m1/fpnw/wm0/05-02-20-pet-friendly-icon-set-color-4-.jpg?1595090551&s=2fd2144dce17db39e7371150a16534d3&fmt=webp"
+
+            $("#modal-post").removeClass("is-active");
+        }
+
     </script>
 </head>
 <body>
@@ -296,7 +306,7 @@
 </header>
 <!-------- 게시물 작성 모달--------------->
 <div class="modal" id="modal-post">
-        <div class="modal-background" onclick='$("#modal-post").removeClass("is-active")'></div>
+        <div class="modal-background" onclick="modal_event()"></div>
         <div class="modal-content" style="width: 1200px;">
             <div class="box">
                 <article class="media">
@@ -312,7 +322,7 @@
 
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input input" id="file" onchange="setThumbnail(event);">
-                                        <label class="custom-file-label" for="file">귀여운 강아지사진을 공유해주세요!</label>
+                                        <div id="file_name">귀여운 강아지사진을 공유해주세요!</div>
                                     </div>
                                 </div>
                             </div>
@@ -346,7 +356,7 @@
             </div>
         </div>
         <button class="modal-close is-large" aria-label="close"
-                onclick='$("#modal-post").removeClass("is-active")'></button>
+                onclick="modal_event()"></button>
     </div>
     <!-------- 게시물--------------->
     <main>

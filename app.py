@@ -61,10 +61,10 @@ def sign_in():
             'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
         # ec2에서는 이 토큰사용
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
+        #token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
         
         # 파이참에서는 아래 토큰사용
-        # token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
         
         return jsonify({'result': 'success', 'token': token})
         # 찾지 못하면
