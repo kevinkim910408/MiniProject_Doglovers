@@ -223,6 +223,9 @@ def user(username):
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
 
+# 프로필 페이지 입니다.
+
+
 
 #프로필 수정 페이지(강의 뼈대입니다. 세화님이 수정부탁드립니다)
 @app.route('/update_profile', methods=['POST'])
