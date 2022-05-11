@@ -136,6 +136,7 @@
         }
 
         function listing() {
+            $('#wrapwrap').empty()
             $.ajax({
                 type: "GET",
                 url: "/upload",
@@ -143,6 +144,7 @@
                 success: function (response) {
                     let posts = response['all_post']
                     for (let i=0; i<posts.length; i++){
+                        let post = posts[i]
                         let username = posts[i]['username']
                         let comment = posts[i]['comment']
                         let userdog = posts[i]['userdog']
@@ -150,8 +152,10 @@
                         let time = posts[i]['time']
                         let file = posts[i]['file']
                         let profile = posts[i]['profile']
+                        let class_heart = post['heart_by_me'] ? "fa-heart": "fa-heart-o"
+                        let count_heart = post['count_heart']
 
-                        let temp_html =`    <div class="wrap">
+                        let temp_html =`    <div class="wrap" id="${post["_id"]}">
     <div class="card">
         <div class="card-header">
             <a class="image is-64x64" href="/profile" style="padding : 7px;">
@@ -162,7 +166,7 @@
                     <strong>${username}</strong> <small>${time}</small>
                 </p>
                 <p style="line-height: 0;">
-                    <small>${userdog}(${age})</small>
+                    <small>${userdog}(${age}살)</small>
                 </p>
             </div>
         </div>
@@ -174,10 +178,10 @@
         </div>
         <nav class="level is-mobile">
             <div class="level-left"style="margin: 0 0 0 15px; padding :0px">
-                <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('', 'heart')">
-                                <span class="icon is-small"><i class="fa fa-heart"
+                <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${post["_id"]}', 'heart')">
+                                <span class="icon is-small"><i class="fa ${class_heart}"
                                                                aria-hidden="true"></i></span>&nbsp;<span
-                        class="like-num">2.7k</span>
+                        class="like-num">${count_heart}</span>
                 </a>
                 <button class="button is-light">댓글 보기</button>
             </div>
@@ -190,6 +194,43 @@
                 }
             })
         }
+        <!-------------좋아요 관련 함수 ----------------->
+    function toggle_like(post_id, type) {
+        console.log(post_id, type)
+        let $a_like = $(`#${post_id} a[aria-label='heart']`)
+        let $i_like = $a_like.find("i")
+        if ($i_like.hasClass("fa-heart")) {
+            $.ajax({
+                type: "POST",
+                url: "/update_like",
+                data: {
+                    post_id_give: post_id,
+                    type_give: type,
+                    action_give: "unlike"
+                },
+                success: function (response) {
+                    console.log("unlike")
+                    $i_like.addClass("fa-heart-o").removeClass("fa-heart")
+                    $a_like.find("span.like-num").text(response["count"])
+                }
+            })
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/update_like",
+                data: {
+                    post_id_give: post_id,
+                    type_give: type,
+                    action_give: "like"
+                },
+                success: function (response) {
+                    console.log("like")
+                    $i_like.addClass("fa-heart").removeClass("fa-heart-o")
+                    $a_like.find("span.like-num").text(response["count"])
+                }
+            })
+        }
+    }
 
     </script>
 </head>
@@ -269,7 +310,7 @@
 <!-------- 게시물--------------->
 <main>
     <div id="wrapwrap">
-        <div class="wrap">
+        <!--<div class="wrap">
     <div class="card">
         <div class="card-header">
             <a class="image is-64x64" href="/profile" style="padding : 7px;">
@@ -303,7 +344,7 @@
 
         </nav>
     </div>
-</div>
+</div>-->
     </div>
 </main>
 
