@@ -29,7 +29,6 @@ SECRET_KEY = 'SPARTA'
 client = MongoClient('mongodb+srv://test:sparta@cluster0.m7jzf.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.dbsparta
 
-
 # 기본 메인 페이지 - 로그인페이지
 @app.route('/')
 def home():
@@ -168,7 +167,6 @@ def upload_file():
     }
     #upload라는 DB에 저장하기
     db.upload.insert_one(doc)
-
     return jsonify({'msg': '저장 완료!'})
 
 #좋아요 관련 함수 페이지
