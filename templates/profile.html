@@ -80,9 +80,17 @@
             margin-right: 70px;
         }
 
-        .container_A {
-            margin-top: 50px;
+        .profile{
+            width: 800px;
+            height: 500px;
+            background-color: white;
+            margin: 10% auto;
+            border-radius: 10%;
+        }
 
+        .profile-container {
+            margin: auto;
+            height: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -95,45 +103,18 @@
         }
 
         .profile_content ul li{
+            margin-bottom: 20px;
+            font-size: 25px;
+            text-align: center;
+            border-bottom: 2px solid black;
+        }
+
+        .profile_content ul li:nth-child(1) {
+            border: none;
             margin-bottom: 10px;
-            font-size: 25px;
         }
-
-        .container_B {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-
-            margin-top: 50px;
-        }
-
-        .container_B a{
-            margin-right: 50px;
-            font-size: 25px;
-        }
-
-        .container_C{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-
-        .cards-box {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin-top: 50px;
-            border-top: 2px solid #9aa0a6;
-            width: 500px;
-        }
-
-        .card {
-            margin-top: 30px;
-            margin-left: 30px;
-            border: 2px solid;
-            border-radius: 10px;
-            margin-right: 40px;
+        .profile_content ul li:nth-child(2){
+             margin-bottom: 70px;
         }
 
     </style>
@@ -142,16 +123,21 @@
 <script>
 
     $(document).ready(function () {
-            bsCustomFileInput.init()
-            listing()
+           // bsCustomFileInput.init() - 필요없는 부분같아서 주석처리입니다. 파일업로드 기능
+           // listing() - 리스팅함수가 없어서 주석처리 합니다.
         })
 
     //프로필 페이지에서 프로필 수정을 눌렀을때 프로필 수정 페이지로 넘어가는 기능  a링크로 연결 (완료)
     //프로필 페이지에서 로그아웃 눌렀을때 로그아웃 창이 나타난 후 로그인 페이지로 넘어가는 기능 승준님이 만들어주신거 활용(완료)
-    function sign_out() {
-        $.removeCookie('mytoken', {path: '/'});
-        alert('로그아웃!')
-        window.location.href = "/login"
+
+    // 쿠키를 모두 날려버리기
+    function deleteAllCookies() {
+        let c = document.cookie.split("; ");
+        for (i in c)
+            document.cookie = /^[^=]+/.exec(c[i])[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+        // 다 날리고나면 login 페이지로
+            window.location.href = "/login"
     }
 
     //프로필 페이지 : image, ID, name, dog_breed, age, 회원가입 정보를 가져와야 함
@@ -164,33 +150,33 @@
     <!-- 네비게이션 바 작성부분 bulma 활용했음-->
     <header class="header">
         <a class="navbar-item" href="/">
-            <strong class="is-sparta" style="font-family: 'Stylish', sans-serif;font-size: larger;">강아지 모여모여</strong>
+            <strong class="is-sparta" style="font-size: 40px;">강아지 모여모여</strong>
         </a>
         <nav class="nav_buttons">
-            <a style="float: right;" class="header-button button is-light" role="button" onCLick=sign_out() ;> 로그아웃 </a>
+            <a style="float: right;" class="header-button button is-light" role="button"  onCLick = deleteAllCookies() ;> 로그아웃 </a>
         </nav>
     </header>
     <div class="profile">
-
-        <div class="container_A">
+        <div class="profile-container">
             <div class="profile_img">
                 <img src="../static/{{ user_info.file }}"
-                     style="width:300px; height:300px; border-radius: 50%"  class="rounded-circle">
+                     style="width:400px; height:400px; border-radius: 50%"  class="rounded-circle">
             </div>
             <div class="profile_content">
                 <ul>
+                    <li>모여모여ID:</li>
                     <li>{{user_info.id}}</li>
-                    <li>{{user_info.name}}</li>
-                    <li>{{user_info.dog_breed}}</li>
-                    <li>{{user_info.age}}</li>
+                    <li>제 이름은 '{{user_info.name}}' 입니다!</li>
+                    <li>견종은 '{{user_info.dog_breed}}' 입니다</li>
+                    <li>올해로 '{{user_info.age}}'살 입니다</li>
                 </ul>
             </div>
         </div>
+
+        <!-- 주석처리 입니다 게시물수정, 게시물수정아래 사진탭
         <div class="container_B">
             <a href="profile_change.html" class="profile_change">프로필 수정</a>
         </div>
-
-        <!--게시글 모아보기-->
         <div class="container_C">
             <div class="cards-box">
             <div class="card">
@@ -203,7 +189,8 @@
                 <img class="card-img-top" src="..." alt="Card image cap">
             </div>
         </div>
-        </div>
+        </div>-->
+
     </div>
 </body>
 </html>
