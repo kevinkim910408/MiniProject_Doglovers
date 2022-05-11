@@ -194,6 +194,8 @@ def update_like():
         return redirect(url_for("home"))
 
 
+
+
 @app.route('/checkpost', methods=['GET'])
 def check_post():
     return render_template("checkPost.html")
