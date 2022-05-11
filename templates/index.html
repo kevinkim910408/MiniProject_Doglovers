@@ -96,6 +96,22 @@
         .button is-light{
         }
 
+        .txt_post {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* 라인수 */
+            -webkit-box-orient: vertical;
+            word-wrap:break-word;
+            width: 600px;
+            line-height: 1.2em;
+            height: 3.6em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+        }
+
+        textarea{
+        font-family: 'Jua', sans-serif;
+        }
+
 
     </style>
     <script>
@@ -185,7 +201,7 @@
             <img src="../static/${file}">
         </div>
         <div class="card-body">
-            <p class="card-text" style="margin: 5px 0 0 15px">${comment}</p>
+            <p class="txt_post" style="margin: 5px 0 0 15px; white-space:pre; ">${comment}</p>
         </div>
         <nav class="level is-mobile">
             <div class="level-left"style="margin: 0 0 0 15px; padding :0px">
@@ -246,6 +262,16 @@
             })
         }
     }
+<!--이미지 미리보기 위한 함수-->
+    function setThumbnail(event) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var img = document.createElement("img");
+                img.setAttribute("src", event.target.result);
+                img.setAttribute("style","height: 400px;")
+                document.getElementById("sample").src=event.target.result;
+            };
+            reader.readAsDataURL(event.target.files[0]); }
 
     </script>
 </head>
@@ -283,10 +309,13 @@
                         <div class="box-header" style="text-align: center; border-bottom: 1px solid black;" >새 게시물 올리기</div>
                         <div class="box-main">
                             <div style="height: 700px; float: left; width: 60%;">
-                                <div style="height: 400px; padding-top:180px; text-align: center;border-bottom: 1px solid black">자신의 강아지 사진을 올려주세요!</div>
+                            <!--이미지 파일 올리는 부분------->
+                                <div id ="image_container" style="height: 400px;border-bottom: 1px solid black;object-fit: fill;"><img id="sample" style="height: 400px;object-fit: fill;"
+                                src="https://images.creativemarket.com/0.1.0/ps/8741478/910/607/m1/fpnw/wm0/05-02-20-pet-friendly-icon-set-color-4-.jpg?1595090551&s=2fd2144dce17db39e7371150a16534d3&fmt=webp">
+                                </div>
                                 <div style="margin-left: 20px;margin-top:10px;">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="file">
+                                        <input type="file" class="custom-file-input" id="file" onchange="setThumbnail(event);">
                                         <label class="custom-file-label" for="file">사진찾기</label>
                                     </div>
                                 </div>
@@ -309,7 +338,7 @@
                                 <div class="comment" style="border-top: 1px solid black; border-bottom: 1px solid black;height: 400px;">
 
                                     <textarea class="form-control" id="comment"
-                                                  rows="3" placeholder="강아지에 대해 설명해주세요!" style="width :700px; height:400px;"></textarea>
+                                                  rows="3" placeholder="강아지에 대해 설명해주세요!" style="width :350px; height:400px; font-size: 20px;"></textarea>
 
                                 </div>
                                 <button class="button is-dark" onclick="uploading() /*$('#modal-post').removeClass('is-active');*/">게시</button>
@@ -326,41 +355,6 @@
 <!-------- 게시물--------------->
 <main>
     <div id="wrapwrap">
-        <!--<div class="wrap">
-    <div class="card">
-        <div class="card-header">
-            <a class="image is-64x64" href="/profile" style="padding : 7px;">
-                <img class="is-rounded"
-                     src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEHBhAIBw8OFRUODw8QEBMSEBAPEA4SFhMWFhYSFx8YHTQgGRoxHRMTITEhJSkuLi4uFx8zODMsNyktLisBCgoKDg0OGhAQGjYlHyU1Ky0tKy0wKy0tLi0tLS0rLS0tLS0tLS0tKy03NystLSsrNS0tLS03Kzc3LS0rLS0tN//AABEIAOEA4QMBIgACEQEDEQH/xAAaAAEAAgMBAAAAAAAAAAAAAAAABAUCAwYB/8QAMxABAAECAwUFBwQDAQAAAAAAAAECAwQRcQUhMTJBEhNRYXI0gZGhsdHhIkKSwSMzghT/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAwIBBAX/xAAcEQEBAQEBAQEBAQAAAAAAAAAAAQIRAzESQSH/2gAMAwEAAhEDEQA/AOsAe980AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHvHgscLs/d27/8fu5bx2S1At2qrk5W4mdISKdn3J6RGs/ZbUxFMZUxlo9Y/ak84qJ2fcjhETpLRcs1Wv8AZTMfRfExnGUn7L5xzotMVs+Ko7VjdPh0nTwVkx2Zyno3L1O5seAOuAAAAAAAAAAAAAAAAAAANlm33t2KI6yCds3DZR39f/Pl5rAiMoyjoJW9Xk5ABx0AAQto4bt0d7Rxjj5wmhLws7HOjdirXc36qI8d2ktKzzgAAAAAAAAAAAAAAAAACZsunPE5+FMz/X9oabsqcsRMeNM/WHNfHc/VqAkuAAAAAAq9rU5XqavGnL4T+UFYbWn/ACUx5T9fwr1c/ENfQB1wAAAAAAAAAAAAAAAAbsJc7rEU1T45TpO5pAjohFwGI7612auNO6fOPFKRv+PRL0AAAABoxl/uLOccZ3U/cLeK3H3O8xU5dP0/D85oz14tHnt6AAAAAAAAAAAAAAAAAAAAztXJtVxXRxhcYXFU4iMuE9Y+ykexOW+HLOu51x0IqLW0K7cZVZVa8fik07Tp/dTV7piWPzVZuJwgztOn9tNXvyhHu7Qrr3UZU6b5c/NLuLDEYmmxT+rj0jrKnvXZvXO3X+IjwYTPanOp4pM8T1roA6yAAAAAAAAAAAAAAAAAAAAAADKmmauWJnSM2cWK54UV/wAZBqG2cPXHGiv+MsJomnmiY1jIOMQAAAAAAAAAAAAAAAAAAABnatTdq7NuM/6WVjZ0U772+fDp+XLZHZm1W0W5uTlREzpCVb2dVVvrmI+crSmmKYypiI03PWLtSec/qJb2dRTzZz78o+TfRYoo5aafhvbBztakkAHHQAGFVmmvmppn3Q0V7Poq4RMaT90oOlkqsubNmN9uqJ13SiXbNVqcrkTH0XxMZxlLU1WLiOdFtf2fTXvt/pn5K69Yqs1ZXI0npLcsqdzY1AOuAAAAAAAAAADdhcPOIudmOEcZ8GleYSz3NiKevGdXNXjWc9rOzaizR2bcfedWYJLAAAAAAAAAAAADyuiK6ezXGcS9AU2Mwv8A56s6eWeHl5Iy/vW4u2poq6/LzUMx2ZynpuUzeo7zyvAGmQAAAAAAAHtPNGroXPU80aw6FjanmAMKAAAAAAAAAAAAAACixW7E1+qfqvVHi/aq/VLeGPT40gNpAAAAAAAAMqeaNYdA5+nmjWHQMbU8wBhQAAAAAAAAAAAAAAUeL9qr9UrxR4v2qv1S3hj0+NIDaQAAAAAAADKnmjWHQOfo541h0DG1PMAYUAAAAAAAAAAAAAAFHi/aq/VK8UeL9qr9Ut4Y9PjSA2kAAAAAAAAyo541h0AMbU8wBhQAAAAAAAAAAAAAAUeL9qr9Ug3hj0+NIDaQAAAD/9k=">
-            </a>
-            <div class="content">
-                <p style="line-height: 2;">
-                    <strong>{{ user_info.id }}</strong> <small>10분 전</small>
-                </p>
-                <p style="line-height: 0;">
-                    <small>견종(나이)</small>
-                </p>
-            </div>
-        </div>
-        <div class="card-image"style="width: 700px">
-            <img src="http://image.dongascience.com/Photo/2017/03/14900752352661.jpg">
-        </div>
-        <div class="card-body">
-            <p class="card-text" style="margin: 5px 0 0 15px">강아지는 귀엽습니다</p>
-        </div>
-        <nav class="level is-mobile">
-            <div class="level-left"style="margin: 0 0 0 15px; padding :0px">
-                <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('', 'heart')">
-                                <span class="icon is-small"><i class="fa fa-heart"
-                                                               aria-hidden="true"></i></span>&nbsp;<span
-                        class="like-num">2.7k</span>
-                </a>
-                <button class="button is-light">댓글 보기</button>
-            </div>
-
-        </nav>
-    </div>
-</div>-->
     </div>
 </main>
 
