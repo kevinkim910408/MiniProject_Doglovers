@@ -138,7 +138,7 @@
                 data: {},
                 success: function (response) {
                     let posts = response['all_post']
-                    for (let i=0; i<diaries.length; i++){
+                    for (let i=0; i<posts.length; i++){
                         let username = posts[i]['username']
                         let comment = posts[i]['comment']
                         let userdog = posts[i]['userdog']
@@ -181,7 +181,7 @@
         </nav>
     </div>
 </div>`
-                        $('#card-box').append(temp_html)
+                        $('#wrapwrap').append(temp_html)
                     }
                 }
             })
@@ -226,6 +226,7 @@
                                 <div style="margin-left: 20px;margin-top:10px;">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="file">
+                                        <label class="custom-file-label" for="file">사진찾기</label>
                                     </div>
                                 </div>
                             </div>
@@ -250,7 +251,7 @@
                                                   rows="3" placeholder="강아지에 대해 설명해주세요!" style="width :700px; height:400px;"></textarea>
 
                                 </div>
-                                <button class="button is-dark" onclick="uploading()">게시</button>
+                                <button class="button is-dark" onclick="uploading() /*$('#modal-post').removeClass('is-active');*/">게시</button>
                             </div>
 
                         </div>
@@ -263,7 +264,8 @@
     </div>
 <!-------- 게시물--------------->
 <main>
-    <div class="wrap">
+    <div id="wrapwrap">
+        <div class="wrap">
     <div class="card">
         <div class="card-header">
             <a class="image is-64x64" href="/profile" style="padding : 7px;">
@@ -298,6 +300,7 @@
         </nav>
     </div>
 </div>
+    </div>
 </main>
 
 

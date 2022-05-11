@@ -120,17 +120,19 @@ def check_dup():
 
 #게시물 받아올 때 GET
 @app.route('/upload', methods=['GET'])
-def show_diary():
+def show_post():
     posts = list(db.upload.find({}, {'_id': False}))
     return jsonify({'all_post': posts})
 
 #게시물 업로드 할때 POST
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    #파일 이름을 지정하기 위한 작업
+    #give데이터 받아오기
     time_receive = request.form['time_give']
     comment_receive = request.form['comment_give']
     file = request.files["file_give"]
+    print(time_receive, comment_receive, file)
+    #파일 이름을 지정하기 위한 작업
     extension = file.filename.split('.')[-1]
     today = datetime.now()
     mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
@@ -143,7 +145,7 @@ def upload_file():
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
     user_info = db.Doglovers.find_one({"id": payload["id"]})
-
+    #DB에 데이터 저장
     doc={
         'profile' : user_info['file'],
         'username': user_info['id'],
@@ -153,6 +155,7 @@ def upload_file():
         'comment':comment_receive,
         'file':f'{filename}.{extension}',
     }
+    #upload라는 DB에 저장하기
     db.upload.insert_one(doc)
 
     return jsonify({'msg': '저장 완료!'})
