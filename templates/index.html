@@ -37,7 +37,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
-
+    <link rel="stylesheet" href="../static/checkPost.css">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>강아지 모여모여</title>
@@ -94,6 +94,22 @@
             margin-left: 10px;
         }
         .button is-light{
+        }
+
+        .txt_post {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* 라인수 */
+            -webkit-box-orient: vertical;
+            word-wrap:break-word;
+            width: 600px;
+            line-height: 1.2em;
+            height: 3.6em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+        }
+
+        textarea{
+        font-family: 'Jua', sans-serif;
         }
 
 
@@ -185,7 +201,7 @@
             <img src="../static/${file}">
         </div>
         <div class="card-body">
-            <p class="card-text" style="margin: 5px 0 0 15px">${comment}</p>
+            <p class="txt_post" style="margin: 5px 0 0 15px; white-space:pre; ">${comment}</p>
         </div>
         <nav class="level is-mobile">
             <div class="level-left"style="margin: 0 0 0 15px; padding :0px">
@@ -196,7 +212,7 @@
                 </a>
 
                 <a style="float: right;" class="button is-primary" role="button" id="to-modal"
-                   onclick='$("#modal-post").addClass("is-active")'>
+                   onclick='$("#modal-check").addClass("is-active")'>
                     게시물확인
                 </a>
             </div>
@@ -246,6 +262,16 @@
             })
         }
     }
+<!--이미지 미리보기 위한 함수-->
+    function setThumbnail(event) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var img = document.createElement("img");
+                img.setAttribute("src", event.target.result);
+                img.setAttribute("style","height: 400px;")
+                document.getElementById("sample").src=event.target.result;
+            };
+            reader.readAsDataURL(event.target.files[0]); }
 
     </script>
 </head>
@@ -283,10 +309,13 @@
                         <div class="box-header" style="text-align: center; border-bottom: 1px solid black;" >새 게시물 올리기</div>
                         <div class="box-main">
                             <div style="height: 700px; float: left; width: 60%;">
-                                <div style="height: 400px; padding-top:180px; text-align: center;border-bottom: 1px solid black">자신의 강아지 사진을 올려주세요!</div>
+                            <!--이미지 파일 올리는 부분------->
+                                <div id ="image_container" style="height: 400px;border-bottom: 1px solid black;object-fit: fill;"><img id="sample" style="height: 400px;object-fit: fill;"
+                                src="https://images.creativemarket.com/0.1.0/ps/8741478/910/607/m1/fpnw/wm0/05-02-20-pet-friendly-icon-set-color-4-.jpg?1595090551&s=2fd2144dce17db39e7371150a16534d3&fmt=webp">
+                                </div>
                                 <div style="margin-left: 20px;margin-top:10px;">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="file">
+                                        <input type="file" class="custom-file-input" id="file" onchange="setThumbnail(event);">
                                         <label class="custom-file-label" for="file">사진찾기</label>
                                     </div>
                                 </div>
@@ -309,7 +338,7 @@
                                 <div class="comment" style="border-top: 1px solid black; border-bottom: 1px solid black;height: 400px;">
 
                                     <textarea class="form-control" id="comment"
-                                                  rows="3" placeholder="강아지에 대해 설명해주세요!" style="width :700px; height:400px;"></textarea>
+                                                  rows="3" placeholder="강아지에 대해 설명해주세요!" style="width :350px; height:400px; font-size: 20px;"></textarea>
 
                                 </div>
                                 <button class="button is-dark" onclick="uploading() /*$('#modal-post').removeClass('is-active');*/">게시</button>
@@ -326,44 +355,41 @@
 <!-------- 게시물--------------->
 <main>
     <div id="wrapwrap">
-        <!--<div class="wrap">
-    <div class="card">
-        <div class="card-header">
-            <a class="image is-64x64" href="/profile" style="padding : 7px;">
-                <img class="is-rounded"
-                     src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEHBhAIBw8OFRUODw8QEBMSEBAPEA4SFhMWFhYSFx8YHTQgGRoxHRMTITEhJSkuLi4uFx8zODMsNyktLisBCgoKDg0OGhAQGjYlHyU1Ky0tKy0wKy0tLi0tLS0rLS0tLS0tLS0tKy03NystLSsrNS0tLS03Kzc3LS0rLS0tN//AABEIAOEA4QMBIgACEQEDEQH/xAAaAAEAAgMBAAAAAAAAAAAAAAAABAUCAwYB/8QAMxABAAECAwUFBwQDAQAAAAAAAAECAwQRcQUhMTJBEhNRYXI0gZGhsdHhIkKSwSMzghT/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAwIBBAX/xAAcEQEBAQEBAQEBAQAAAAAAAAAAAQIRAzESQSH/2gAMAwEAAhEDEQA/AOsAe980AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHvHgscLs/d27/8fu5bx2S1At2qrk5W4mdISKdn3J6RGs/ZbUxFMZUxlo9Y/ak84qJ2fcjhETpLRcs1Wv8AZTMfRfExnGUn7L5xzotMVs+Ko7VjdPh0nTwVkx2Zyno3L1O5seAOuAAAAAAAAAAAAAAAAAAANlm33t2KI6yCds3DZR39f/Pl5rAiMoyjoJW9Xk5ABx0AAQto4bt0d7Rxjj5wmhLws7HOjdirXc36qI8d2ktKzzgAAAAAAAAAAAAAAAAACZsunPE5+FMz/X9oabsqcsRMeNM/WHNfHc/VqAkuAAAAAAq9rU5XqavGnL4T+UFYbWn/ACUx5T9fwr1c/ENfQB1wAAAAAAAAAAAAAAAAbsJc7rEU1T45TpO5pAjohFwGI7612auNO6fOPFKRv+PRL0AAAABoxl/uLOccZ3U/cLeK3H3O8xU5dP0/D85oz14tHnt6AAAAAAAAAAAAAAAAAAAAztXJtVxXRxhcYXFU4iMuE9Y+ykexOW+HLOu51x0IqLW0K7cZVZVa8fik07Tp/dTV7piWPzVZuJwgztOn9tNXvyhHu7Qrr3UZU6b5c/NLuLDEYmmxT+rj0jrKnvXZvXO3X+IjwYTPanOp4pM8T1roA6yAAAAAAAAAAAAAAAAAAAAAADKmmauWJnSM2cWK54UV/wAZBqG2cPXHGiv+MsJomnmiY1jIOMQAAAAAAAAAAAAAAAAAAABnatTdq7NuM/6WVjZ0U772+fDp+XLZHZm1W0W5uTlREzpCVb2dVVvrmI+crSmmKYypiI03PWLtSec/qJb2dRTzZz78o+TfRYoo5aafhvbBztakkAHHQAGFVmmvmppn3Q0V7Poq4RMaT90oOlkqsubNmN9uqJ13SiXbNVqcrkTH0XxMZxlLU1WLiOdFtf2fTXvt/pn5K69Yqs1ZXI0npLcsqdzY1AOuAAAAAAAAAADdhcPOIudmOEcZ8GleYSz3NiKevGdXNXjWc9rOzaizR2bcfedWYJLAAAAAAAAAAAADyuiK6ezXGcS9AU2Mwv8A56s6eWeHl5Iy/vW4u2poq6/LzUMx2ZynpuUzeo7zyvAGmQAAAAAAAHtPNGroXPU80aw6FjanmAMKAAAAAAAAAAAAAACixW7E1+qfqvVHi/aq/VLeGPT40gNpAAAAAAAAMqeaNYdA5+nmjWHQMbU8wBhQAAAAAAAAAAAAAAUeL9qr9UrxR4v2qv1S3hj0+NIDaQAAAAAAADKnmjWHQOfo541h0DG1PMAYUAAAAAAAAAAAAAAFHi/aq/VK8UeL9qr9Ut4Y9PjSA2kAAAAAAAAyo541h0AMbU8wBhQAAAAAAAAAAAAAAUeL9qr9Ug3hj0+NIDaQAAAD/9k=">
-            </a>
-            <div class="content">
-                <p style="line-height: 2;">
-                    <strong>{{ user_info.id }}</strong> <small>10분 전</small>
-                </p>
-                <p style="line-height: 0;">
-                    <small>견종(나이)</small>
-                </p>
-            </div>
-        </div>
-        <div class="card-image"style="width: 700px">
-            <img src="http://image.dongascience.com/Photo/2017/03/14900752352661.jpg">
-        </div>
-        <div class="card-body">
-            <p class="card-text" style="margin: 5px 0 0 15px">강아지는 귀엽습니다</p>
-        </div>
-        <nav class="level is-mobile">
-            <div class="level-left"style="margin: 0 0 0 15px; padding :0px">
-                <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('', 'heart')">
-                                <span class="icon is-small"><i class="fa fa-heart"
-                                                               aria-hidden="true"></i></span>&nbsp;<span
-                        class="like-num">2.7k</span>
-                </a>
-                <button class="button is-light">댓글 보기</button>
-            </div>
-
-        </nav>
-    </div>
-</div>-->
     </div>
 </main>
+<!-------게시물 확인 모달---------->
+<div class="modal" id="modal-check">
+        <div class="modal-background" onclick='$("#modal-check").removeClass("is-active")'></div>
+        <div class="modal-content" style="width: 900px;">
+            <div class="checkPost-wrap">
+                <div class="checkPost-Container">
+                    <div class="checkPost-Container-left">
+                        <img style="width: 100%; height: 100%; border-radius: 10px 0px 0px 10px;"
+                             src="{{user_info.profile}}" alt="">
+                    </div>
+                    <div class="checkPost-Container-right">
+                        <div class="checkPost-UserProfile">
+                            <div class="userProfile-pic">
+                                <img style="width: 100px; height: 100px; border-radius: 100%" src="data:image/jpeg;base64,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" alt="">
+                            </div>
+                            <div class="userProfile-Container">
+                                <div class="userProfile-name"><p>{{ user_info.id }}</p></div>
+                                <div class="userProfile-breed"><p>{{ user_info.dog_breed }}</p></div>
+                            </div>
+                        </div>
 
+                        <hr/>
+                        <div class="checkPost-UserPost"><p>{{user_info.profile}}</p></div>
+
+                        <hr/>
+                        <div class="checkPost-Container-Comments"><p>댓글을 추가할까요?</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"
+                onclick='$("#modal-check").removeClass("is-active")'></button>
+    </div>
 
 
 </body>

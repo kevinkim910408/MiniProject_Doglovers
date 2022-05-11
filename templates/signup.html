@@ -29,16 +29,25 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <style>
-        h1, input,button{
+        h1, h5, input,button{
             font-family: 'Jua', sans-serif !important;
         }
+
         *{
             font-family: 'Jua', sans-serif;
         }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            background-color: RGBA(188, 94, 0, 0.7);
+        }
         .title {
             font-weight: 800;
-            font-size: 5rem;
+            font-size: 6rem;
             font-family: 'Stylish', sans-serif;
+            color: #fff;
+            margin-top: 50px;
         }
 
         .help {
@@ -242,15 +251,16 @@
     </script>
 </head>
 <body>
-<section class="hero is-white">
+<section class="hero">
     <div class="hero-body has-text-centered" style="padding-bottom:1rem;margin:auto;">
-        <h1 id="title_id" class="title is-sparta">로그인</h1>
-        <h1 id="title_id2" class="title is-sparta is-hidden">회원가입</h1>
+        <h1 class="title">강아지 모여모여!</h1>
+        <h5 id="title_id" class="title is-sparta">로그인</h5>
+        <h5 id="title_id2" class="title is-sparta is-hidden">회원가입</h5>
     </div>
 </section>
 <section class="section">
     <div class="container">
-        <div class="box" style="max-width: 700px;margin:auto">
+        <div class="box" style="max-width: 700px;margin:auto;">
             <article class="media">
                 <div class="media-content">
                     <div class="content">
@@ -308,21 +318,21 @@
                                 <p id="help-password2" class="help is-hidden">비밀번호를 다시 한 번 입력해주세요.</p>
                                 <div class="Personalpk">
                                     <div class="Personal">
-                                        <input type="text" class="form-control" id="dog_breed" placeholder="견종"
+                                        <input type="text" class="form-control input" id="dog_breed" placeholder="견종"
                                                maxlength="15">
                                     </div>
                                     <div class="Personal">
-                                        <input type="text" class="form-control" id="age" placeholder="나이" maxlength="4">
+                                        <input type="text" class="form-control input" id="age" placeholder="나이" maxlength="4">
                                     </div>
                                     <div class="Personal">
-                                        <input type="text" class="form-control" id="name" placeholder="이름"
+                                        <input type="text" class="form-control input" id="name" placeholder="이름"
                                                maxlength="10">
                                     </div>
                                 </div>
                                 <div class="jpg">
                                     <div class="input-group mb-3" style="font-family: 'Jua', sans-serif;">
-                                        <input type="file"  class="form-control"  id="file">
-                                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                        <input type="file"  class="form-control input"  id="file">
+                                        <label class="input-group-text" for="inputGroupFile02">프로필사진으로 사용할 강아지 사진을 올려주세요!</label>
                                     </div>
                                 </div>
                             </div>
