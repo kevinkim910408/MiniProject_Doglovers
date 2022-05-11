@@ -121,7 +121,15 @@ def check_dup():
 #게시물 받아올 때 GET
 @app.route('/upload', methods=['GET'])
 def show_post():
-    posts = list(db.upload.find({}, {'_id': False}))
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+    # posts = list(db.upload.find({}, {'_id': False}))
+    posts = list(db.upload.find({}).sort("date", -1).limit(20))
+    for post in posts:
+        post["_id"] = str(post["_id"])
+        post["count_heart"] = db.likes.count_documents({"post_id": post["_id"], "type": "heart"})
+        post["heart_by_me"] = bool(db.likes.find_one({"post_id": post["_id"], "type": "heart", "username": payload['id']}))
     return jsonify({'all_post': posts})
 
 #게시물 업로드 할때 POST
@@ -159,6 +167,37 @@ def upload_file():
     db.upload.insert_one(doc)
 
     return jsonify({'msg': '저장 완료!'})
+
+#좋아요 관련 함수 페이지
+@app.route('/update_like', methods=['POST'])
+def update_like():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        # 좋아요 수 변경
+        user_info = db.Doglovers.find_one({"id": payload["id"]})
+        post_id_receive = request.form["post_id_give"]
+        type_receive = request.form["type_give"]
+        action_receive = request.form["action_give"]
+        doc = {
+            "post_id": post_id_receive,
+            "username": user_info['id'],
+            "type": type_receive
+        }
+        if action_receive == "like":
+            db.likes.insert_one(doc)
+        else:
+            db.likes.delete_one(doc)
+        count = db.likes.count_documents({"post_id": post_id_receive, "type": type_receive})
+        return jsonify({"result": "success", 'msg': 'updated', "count": count})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
+
+
+@app.route('/checkpost', methods=['GET'])
+def check_post():
+    return render_template("checkPost.html")
+
 
 
 
