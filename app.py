@@ -128,10 +128,8 @@ def show_post():
 @app.route('/upload', methods=['POST'])
 def upload_file():
     #give데이터 받아오기
-    time_receive = request.form['time_give']
     comment_receive = request.form['comment_give']
     file = request.files["file_give"]
-    print(time_receive, comment_receive, file)
     #파일 이름을 지정하기 위한 작업
     extension = file.filename.split('.')[-1]
     today = datetime.now()
