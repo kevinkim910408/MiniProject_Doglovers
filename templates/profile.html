@@ -30,15 +30,11 @@
     </head>
 
     <script>
-
-        $(document).ready(function () {
-            bsCustomFileInput.init()
-            listing()
-        })
+        //프로필 페이지에서 프로필 수정을 눌렀을때 프로필 수정 페이지로 넘어가는 기능  a링크로 연결 (완료)
 
 
-        //프로필 페이지에서 프로필 수정을 눌렀을때 프로필 수정 페이지로 넘어가는 기능  a링크 or버튼
-        //프로필 페이지에서 로그아웃 눌렀을때 로그아웃 창이 나타난 후 로그인 페이지로 넘어가는 기능  승준님이 만들어주신거 활용
+        //프로필 페이지에서 로그아웃 눌렀을때 로그아웃 창이 나타난 후 로그인 페이지로 넘어가는 기능  승준님이 만들어주신거 활용(완료)
+
         function sign_out() {
 
             $.removeCookie('mytoken', {path: '/'});
@@ -48,14 +44,76 @@
             window.location.href = "/login"
         }
 
-        /*프로필 페이지
-        image, ID, name, dog_breed, age, 게시물들의 정보를 가져와야 함 (+프로필 수정 탭, 로그아웃 탭)*/
+        // 웹페이지 로딩될때 시작할 코드
+        $(document).ready(function () {
+            bsCustomFileInput.init()  // 파일 업로드할때 파일 이름 보여주는 기능
+        })
 
-        /*프로필 수정 페이지
-        image, ID, name, dog_breed, age 정보를 가져온 후 수정  / 입력할 수 있는 창을 띄워주고(dbprac 내용 활용)*/
+        //프로필 페이지 : image, ID, name, dog_breed, age, 회원가입 정보를 가져와야 함 (+프로필 수정 탭, 로그아웃 탭)
 
-        /*다른 사람 프로필 페이지
-        프로필 페이지와 동일한 기능 + 4주차 강의 활용해서 내가 아닐 경우 프로필 수정, 로그아웃 탭 없어지게 기능 구현*/
+        $(document).ready(function () {
+            show_profile();
+        });
+
+        function show_profile() {
+            $.ajax({
+                type: 'GET',
+                url: '/show_profile',
+                data: {},
+                success: function (response) {
+                    let posts = response['all_post']
+                    for (let i = 0; i < posts.length; i++) {
+                        let username = posts[i]['username']
+                        let userdog = posts[i]['userdog']
+                        let age = posts[i]['age']
+                        let file = posts[i]['file']
+                        let profile = posts[i]['profile']
+
+                        let temp_html = `    <div class="wrap">
+    <div class="card">
+        <div class="card-header">
+            <a class="image is-64x64" href="/profile" style="padding : 7px;">
+                <img class="is-rounded" src=${profile}>
+            </a>
+            <div class="content">
+                <p style="line-height: 2;">
+                    <strong>${username}</strong> <small>${time}</small>
+                </p>
+                <p style="line-height: 0;">
+                    <small>${userdog}(${age})</small>
+                </p>
+            </div>
+        </div>
+        <div class="card-image"style="width: 700px">
+            <img src=${file}>
+        </div>
+        <div class="card-body">
+            <p class="card-text" style="margin: 5px 0 0 15px">${comment}</p>
+        </div>
+        <nav class="level is-mobile">
+            <div class="level-left"style="margin: 0 0 0 15px; padding :0px">
+                <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('', 'heart')">
+                                <span class="icon is-small"><i class="fa fa-heart"
+                                                               aria-hidden="true"></i></span>&nbsp;<span
+                        class="like-num">2.7k</span>
+                </a>
+                <button class="button is-light">댓글 보기</button>
+            </div>
+
+        </nav>
+    </div>
+</div>`
+                        $('#wrapwrap').append(temp_html)
+                    }
+                }
+            })
+        }
+
+
+        //프로필 수정 페이지 : image, ID, name, dog_breed, age 정보를 가져온 후 수정  / 입력할 수 있는 창을 띄워주고(dbprac 내용 활용)
+
+
+        //다른 사람 프로필 페이지: 프로필 페이지와 동일한 기능 + 4주차 강의 활용해서 내가 아닐 경우 프로필 수정, 로그아웃 탭 없어지게 기능 구현
 
 
     </script>
@@ -84,12 +142,14 @@
         </div>
 
         <!--프로필 수정 및 로그아웃-->
-        <div class="container_B">
+        {%  if status %}
+            <div class="container_B">
             <div class="profile_bottom">
                 <a href="profile_change.html" class="profile_change">프로필 수정</a>
                 <a href="#" class="logout">로그아웃</a>
             </div>
         </div>
+        {% endif %}
     </div>
 
 
