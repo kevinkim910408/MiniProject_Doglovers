@@ -132,6 +132,10 @@
             });
         }
 
+        function movetoCheckPost(){
+            window.location.href='/checkpost'
+        }
+
         function listing() {
             $('#wrapwrap').empty()
             $.ajax({
@@ -180,7 +184,7 @@
                                                                aria-hidden="true"></i></span>&nbsp;<span
                         class="like-num">${count_heart}</span>
                 </a>
-                <button class="button is-light">댓글 보기</button>
+                <button class="button is-light" onclick="movetoCheckPost()">댓글 보기</button>
             </div>
 
         </nav>
