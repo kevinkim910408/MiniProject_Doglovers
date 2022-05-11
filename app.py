@@ -201,6 +201,45 @@ def check_post():
     return render_template("checkPost.html")
 
 
+#각 사용자의 프로필을 볼 수 있는 페이지
+@app.route('/user/<username>')
+def user(username):
+    token_receive = request.cookies.get('mytoken') #사용자정보를 받아주는 토큰입니다.
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])#사용자 정보를 받아줍니다
+        status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
+
+        user_info = db.Doglovers.find_one({"id": username}, {"_id": False})
+        return render_template('profile.html', user_info=user_info, status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
+
+
+#프로필 수정 페이지(강의 뼈대입니다. 세화님이 수정부탁드립니다)
+@app.route('/update_profile', methods=['POST'])
+def save_img():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        username = payload["id"]
+        name_receive = request.form["name_give"]
+        about_receive = request.form["about_give"]
+        new_doc = {
+            "profile_name": name_receive,
+            "profile_info": about_receive
+        }
+        if 'file_give' in request.files:
+            file = request.files["file_give"]
+            filename = secure_filename(file.filename)
+            extension = filename.split(".")[-1]
+            file_path = f"profile_pics/{username}.{extension}"
+            file.save("./static/"+file_path)
+            new_doc["profile_pic"] = filename
+            new_doc["profile_pic_real"] = file_path
+        db.users.update_one({'username': payload['id']}, {'$set':new_doc})
+        return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
 
 
 if __name__ == '__main__':
