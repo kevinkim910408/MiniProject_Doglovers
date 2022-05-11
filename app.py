@@ -130,7 +130,7 @@ def show_post():
         post["_id"] = str(post["_id"])
         post["count_heart"] = db.likes.count_documents({"post_id": post["_id"], "type": "heart"})
         post["heart_by_me"] = bool(db.likes.find_one({"post_id": post["_id"], "type": "heart", "username": payload['id']}))
-    return jsonify({'all_post': posts})
+    return jsonify({'all_post': posts}, )
 
 #게시물 업로드 할때 POST
 @app.route('/upload', methods=['POST'])
@@ -195,19 +195,19 @@ def update_like():
 
 
 
-#각 댓글을 볼수있는 페이지
-# @app.route('/checkPost/<username>', methods=['GET'])
-# def check_post(username):
-#         # 각 사용자의 프로필과 글을 모아볼 수 있는 공간
-#         token_receive = request.cookies.get('mytoken')
-#         try:
-#             payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-#             status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
-#
-#             user_info = db.Doglover.find_one({"id": username}, {"_id": False})
-#             return render_template('checkPost.html', user_info=user_info, status=status)
-#         except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-#             return redirect(url_for("login"))
+
+@app.route('/checkPost/<username>')
+def check_post(username):
+        # 각 사용자의 프로필과 글을 모아볼 수 있는 공간
+        token_receive = request.cookies.get('mytoken')
+        try:
+            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+            status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
+            user_info = db.upload.find_one({"username": username}, {"_id": False})
+            print(user_info)
+            return render_template('checkPost.html', user_info=user_info, status=status)
+        except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+            return redirect(url_for("login"))
 
 
 #각 사용자의 프로필을 볼 수 있는 페이지
