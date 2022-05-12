@@ -35,6 +35,8 @@
             integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
             crossorigin="anonymous"></script>
 
+    <!-- 구글아이콘 -->
+    <script src="https://kit.fontawesome.com/615a5dd13f.js" crossorigin="anonymous"></script>
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>강아지 모여모여</title>
@@ -71,6 +73,7 @@
             padding-right: 100px;
             background-color: white;
             z-index: 5;
+            box-shadow: 0px 10px 13px -7px #000000;
         }
 
         .header-button {
@@ -86,6 +89,7 @@
             background-color: white;
             margin: 10% auto;
             border-radius: 10%;
+            box-shadow: 0px 10px 13px -7px #000000;
         }
 
         .profile-container {
@@ -150,7 +154,11 @@
     <!-- 네비게이션 바 작성부분 bulma 활용했음-->
     <header class="header">
         <a class="navbar-item" href="/">
-            <strong class="is-sparta" style="font-size: 40px;">강아지 모여모여</strong>
+            <strong class="is-sparta" style="font-size: 40px;">
+                <span style="margin-right: 10px" class="icon is-small is-left">
+                <i class="fa fa-dog"></i></span>
+                강아지 모여모여
+            </strong>
         </a>
         <nav class="nav_buttons">
             <a style="float: right;" class="header-button button is-light" role="button"  onCLick = deleteAllCookies() ;> 로그아웃 </a>

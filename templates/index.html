@@ -39,17 +39,22 @@
 
     <link rel="stylesheet" href="../static/checkPost.css">
 
+    <!-- 구글아이콘 -->
+    <script src="https://kit.fontawesome.com/615a5dd13f.js" crossorigin="anonymous"></script>
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>강아지 모여모여</title>
     <style>
         *{
             font-family: 'Jua', sans-serif;
         }
+
         body {
             background-color: RGBA(188, 94, 0, 0.7);
             min-height: 100vh;
             padding-top: 3.25rem;
         }
+
         header {
             height: 75px;
             padding: 1rem;
@@ -69,7 +74,9 @@
             padding-right: 100px;
             background-color: white;
             z-index: 5;
+            box-shadow: 0px 10px 13px -7px #000000;
         }
+
         main{
             padding-top: 20px;
         }
@@ -87,7 +94,7 @@
             justify-content: center;
             width : 700px;
             margin: 20px auto 0px auto;
-
+            box-shadow: 0px 10px 13px -7px #000000;
 
         }
         .content{
@@ -120,13 +127,74 @@
             flex-direction: column-reverse;
         }
 
+        /* 강아지를 구석에 붙이는 태그 */
+        .fixedInfo{
+            position: fixed;
+            right: 5%;
+            bottom: 5%;
+
+        }
+
+        /* 강아지 이미지 사이즈, 등 꾸미기 */
+        .fixedInfo img{
+            width: 100px;
+            border-radius: 50%;
+            animation : up-down 1.4s infinite ;
+        }
+
+        .fixedInfo img:hover{
+            box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, 15px 11px 50px -6px rgba(0,0,0,0);
+        }
+
+        @keyframes up-down{
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(0px, -10px); }
+            0% { transform: translate(0, 0); }
+
+        }
+
+        /* 강아지 이미지를 감싼 컨테이너 사이즈*/
+        .Img-container{
+         width: 300px;
+        }
+
+        /* 개발자 정보를 감싼 컨테이너 사이즈*/
+        .Info-Container{
+            width: 300px;
+            margin-bottom: 50px;
+            box-shadow: 0px 10px 13px -7px #000000;
+            border-radius: 20%;
+            background-color: rgba( 255, 255, 255, 0.5 );
+        }
+
+        .Info-Container p{
+            border-bottom: 1px solid grey;
+            font-size: 20px;
+            text-align: center;
+
+        }
+
+        .Info-Container p:nth-child(5){
+            border: none
+        }
+
     </style>
     <script>
         //화면이 시작될 때 listing()함수 작동
         $(document).ready(function () {
             bsCustomFileInput.init()
             listing()
+
+            // 오른쪽 아래 구석에 강아지 사진 누를때 이벤트
+            $('.dogImg_bottom').click(function() {
+                devInfo_toggle();
+            })
         })
+
+        function devInfo_toggle(){
+            $("#Info-Container_id").toggleClass("is-hidden")
+        }
+
         //로그아웃이 작동되도록 하는 함수
         function sign_out() {
             $.removeCookie('mytoken', {path: '/'}) // 쿠키에서 my토큰을 없앤다
@@ -290,7 +358,11 @@
 <header class="header" >
 
     <a class="navbar-item" href="/">
-        <strong class="is-sparta" style="font-size: 40px;">강아지 모여모여</strong>
+        <strong class="is-sparta" style="font-size: 40px;">
+            <span style="margin-right: 10px" class="icon is-small is-left">
+            <i class="fa fa-dog"></i></span>
+            강아지 모여모여
+        </strong>
     </a>
     <nav class="buttons">
         <a style="float: right;" class="button is-primary" role="button" id="to-modal"
@@ -368,6 +440,21 @@
         <div id="wrapwrap">
         </div>
     </main>
+    <!---  강아지 사진 - 오른쪽 아래  --->
+    <div class="fixedInfo">
+        <div class="Info-Container is-hidden" id="Info-Container_id">
+            <p>강아지 모여모여 개발자정보!</p>
+            <p>항해 99 7기 10조 고승준</p>
+            <p>항해 99 7기 10조 김준호</p>
+            <p>항해 99 7기 10조 신상우</p>
+            <p>항해 99 7기 10조 장세화</p>
+        </div>
+        <div class="Img-container">
+            <img style="width: 50px" class="dogImg_bottom" src="http://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg" alt="a">
+            <img style="z-index: 10;" class="dogImg_bottom" src="http://rgo4.com/files/attach/images/411209/067/022/018/f98568c695e4c249c0776bf43a8699d1.jpeg" alt="a">
+            <img style="width: 50px" class="dogImg_bottom" src="https://i.pinimg.com/originals/60/eb/b5/60ebb5bcf6a3a81149ab35b2827be46d.jpg" alt="a">
+        </div>
+    </div>
 </body>
 
 </html>
