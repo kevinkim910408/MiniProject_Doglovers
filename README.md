@@ -20,4 +20,7 @@
 - JWT의 인증방식과, 쿠키/세션과 다른점을 이해한다.
 
 # Contributor
-<a href='https://github.com/kokomong2'>고승준<a/>
+<a target='_blank' href='https://github.com/kokomong2'>고승준<a/>
+<a target='_blank' href='https://github.com/kevinkim910408'>김준호<a/>
+<a target='_blank' href='https://github.com/shinsang97'>신상우<a/>
+<a target='_blank' href='https://github.com/saehwa95'>장세화<a/>
