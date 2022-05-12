@@ -1,6 +1,6 @@
 # :dog:강아지 모여모여:dog:
 
-# :hammer_and_wrench:사용된 기술
+# :hammer_and_wrench:
 - <img src="https://img.shields.io/badge/PyCharm-lightgrey?style=flat&logo=PyCharm&logoColor=000000"/>
 - <img src="https://img.shields.io/badge/HTML5-orange?style=flat&logo=HTML5&logoColor=E34F26"/>
 - <img src="https://img.shields.io/badge/Css3-yellowgreen?style=flat&logo=Css3&logoColor=1572B6"/><img src="https://img.shields.io/badge/Bootstrap-blueviolet?style=flat&logo=Bootstrap&logoColor=7952B3"/>
