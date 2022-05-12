@@ -1,4 +1,4 @@
-# 강아지 모여모여:dog:
+# :dog: 강아지 모여모여:dog:
 
 # 사용된 기술
 - <img src="https://img.shields.io/badge/PyCharm-lightgrey?style=flat&logo=PyCharm&logoColor=000000"/>
