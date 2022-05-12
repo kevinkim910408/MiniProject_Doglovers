@@ -18,3 +18,6 @@
 # :white_check_mark:목표
 - 서버사이드 렌더링의 장점을 이해한다.
 - JWT의 인증방식과, 쿠키/세션과 다른점을 이해한다.
+
+# Contributor
+<a href='https://github.com/kokomong2'>고승준<a/>
