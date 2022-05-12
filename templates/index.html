@@ -156,31 +156,22 @@
 
         }
 
-        /* 강아지 이미지를 감싼 컨테이너 사이즈*/
-        .Img-container{
-         width: 300px;
-        }
-
         /* 개발자 정보를 감싼 컨테이너 사이즈*/
         .Info-Container{
-            width: 300px;
-            margin-bottom: 50px;
-            box-shadow: 0px 10px 13px -7px #000000;
+            margin-bottom: 30px;
             border-radius: 20%;
-            background-color: rgba( 255, 255, 255, 0.5 );
-        }
-
-        .Info-Container p{
-            border-bottom: 1px solid grey;
-            font-size: 20px;
+            font-size: 50px;
             text-align: center;
-
+            animation : up-down 1.4s infinite ;
         }
 
-        .Info-Container p:nth-child(5){
-            border: none
-        }
+        .flex-text{
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            animation : up-down 1.4s infinite ;
 
+        }
     </style>
     <script>
         //화면이 시작될 때 listing()함수 작동
@@ -446,17 +437,22 @@
     <!---  강아지 사진 - 오른쪽 아래  --->
     <div class="fixedInfo">
         <div class="Info-Container is-hidden" id="Info-Container_id">
-            <p>강아지 모여모여 개발자정보!</p>
-            <p>항해 99 7기 10조 고승준</p>
-            <p>항해 99 7기 10조 김준호</p>
-            <p>항해 99 7기 10조 신상우</p>
-            <p>항해 99 7기 10조 장세화</p>
+            <a style="color: black " target="_blank" href="https://github.com/kevinkim910408/MiniProject_Doglovers">
+                <i class="fa fa-youtube"></i>
+            </a>
+            <a style="color: black " target="_blank" href="https://github.com/kevinkim910408/MiniProject_Doglovers">
+                <i class="fa fa-github"></i>
+            </a>
+            <a style="color: black " target="_blank" href="https://devkevin0408.tistory.com/91">
+                <i class="fa fa-receipt"></i>
+            </a>
         </div>
         <div class="Img-container">
             <img style="width: 50px" class="dogImg_bottom" src="http://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg" alt="a">
             <img style="z-index: 10;" class="dogImg_bottom" src="http://rgo4.com/files/attach/images/411209/067/022/018/f98568c695e4c249c0776bf43a8699d1.jpeg" alt="a">
             <img style="width: 50px" class="dogImg_bottom" src="https://i.pinimg.com/originals/60/eb/b5/60ebb5bcf6a3a81149ab35b2827be46d.jpg" alt="a">
         </div>
+        <p class="flex-text">CLICK!</p>
     </div>
 </body>
 

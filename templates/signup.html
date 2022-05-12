@@ -117,7 +117,7 @@
 
         // 아이디 정규 표현식
         function is_nickname(asValue) {
-            //[-a-zA-Z0-9_.]{2,10} - 영문, 숫자, 아이디 길이는 2~10까지
+            //한글, 알파벳, 숫자, _. 특수문자 사용가능
             var regExp = /^[가-힣a-zA-Z0-9_.]{2,10}$/;
             return regExp.test(asValue);
         }
@@ -143,7 +143,7 @@
 
             // 아이디가 106번줄의 코드 =  정규표현식의 형식을 벗어난 경우
             if (!is_nickname(username)) {
-                $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
+                $("#help-id").text("아이디의 형식을 확인해주세요. 한글과 영문, 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
                 $("#input-username").focus() // .focus() - input창에 커서를 넣어주는거
                 return;
             }
@@ -341,7 +341,7 @@
                                 <button class="button is-sparta" onclick="check_dup()">중복확인</button>
                             </div>
                         </div>
-                        <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                        <p id="help-id" class="help is-hidden">아이디는 2-10자의 한글과 영문, 숫자, 일부 특수문자(._-) 사용 가능합니다.</p>
                         <p id="help-id-login" class="help is-danger"></p>
 
                         <div class="field">
