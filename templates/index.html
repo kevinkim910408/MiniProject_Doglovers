@@ -111,27 +111,27 @@
         textarea{
         font-family: 'Jua', sans-serif;
         }
-
+        .card-image::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera*/
+        }
 
     </style>
     <script>
+        //화면이 시작될 때 listing()함수 작동
         $(document).ready(function () {
             bsCustomFileInput.init()
             listing()
         })
-
+        //로그아웃이 작동되도록 하는 함수
         function sign_out() {
-
-            $.removeCookie('mytoken', {path: '/'});
-
-            alert('로그아웃!')
-
-            window.location.href = "/login"
-
+            $.removeCookie('mytoken', {path: '/'}) // 쿠키에서 my토큰을 없앤다
+            alert('로그아웃!')                      //로그아웃 알람을 보낸다
+            window.location.href = "/login"        //"/login"페이지로 넘어간다
         }
-       function uploading() {
-            let comment = $("#comment").val()
-            let file = $("#file")[0].files[0]
+
+       function uploading() {                   //게시물을 업로드 하는 함수
+            let comment = $("#comment").val()   //comment 변수에 id="comment" 의 입력값을 대입
+            let file = $("#file")[0].files[0]   //file 변수에 id="file"의 첫번째 값의의
             let form_data = new FormData()
 
             form_data.append("file_give", file)
@@ -197,7 +197,7 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="card-image"style="width: 700px">
+                                                    <div class="card-image"style="width: 700px;max-height: 700px; overflow: auto;">
                                                         <img src="../static/${file}">
                                                     </div>
                                                     <div class="card-body">
